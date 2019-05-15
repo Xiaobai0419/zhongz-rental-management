@@ -1,0 +1,124 @@
+package com.zhongz.rental.web.controller;
+
+import com.ruoyi.common.annotation.Log;
+import com.ruoyi.common.core.controller.BaseController;
+import com.ruoyi.common.core.domain.AjaxResult;
+import com.ruoyi.common.core.page.TableDataInfo;
+import com.ruoyi.common.enums.BusinessType;
+import com.ruoyi.common.utils.poi.ExcelUtil;
+import com.zhongz.rental.domain.ZhongzContract;
+import com.zhongz.rental.service.IZhongzContractService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+/**
+ * 合同 信息操作处理
+ * 
+ * @author ruoyi
+ * @date 2019-04-04
+ */
+@Controller
+@RequestMapping("/system/zhongzContract")
+public class ZhongzContractController extends BaseController
+{
+    private String prefix = "zhongz/rental/contract";
+	
+	@Autowired
+	private IZhongzContractService zhongzContractService;
+	
+	@RequiresPermissions("system:zhongzContract:view")
+	@GetMapping()
+	public String zhongzContract()
+	{
+	    return prefix + "/zhongzContract";
+	}
+	
+	/**
+	 * 查询合同列表
+	 */
+	@RequiresPermissions("system:zhongzContract:list")
+	@PostMapping("/list")
+	@ResponseBody
+	public TableDataInfo list(ZhongzContract zhongzContract)
+	{
+		startPage();
+        List<ZhongzContract> list = zhongzContractService.selectZhongzContractList(zhongzContract);
+		return getDataTable(list);
+	}
+	
+	
+	/**
+	 * 导出合同列表
+	 */
+	@RequiresPermissions("system:zhongzContract:export")
+    @PostMapping("/export")
+    @ResponseBody
+    public AjaxResult export(ZhongzContract zhongzContract)
+    {
+    	List<ZhongzContract> list = zhongzContractService.selectZhongzContractList(zhongzContract);
+        ExcelUtil<ZhongzContract> util = new ExcelUtil<ZhongzContract>(ZhongzContract.class);
+        return util.exportExcel(list, "zhongzContract");
+    }
+	
+	/**
+	 * 新增合同
+	 */
+	@GetMapping("/add")
+	public String add()
+	{
+	    return prefix + "/add";
+	}
+	
+	/**
+	 * 新增保存合同
+	 */
+	@RequiresPermissions("system:zhongzContract:add")
+	@Log(title = "合同", businessType = BusinessType.INSERT)
+	@PostMapping("/add")
+	@ResponseBody
+	public AjaxResult addSave(ZhongzContract zhongzContract)
+	{		
+		return toAjax(zhongzContractService.insertZhongzContract(zhongzContract));
+	}
+
+	/**
+	 * 修改合同
+	 */
+	@GetMapping("/edit/{id}")
+	public String edit(@PathVariable("id") String id, ModelMap mmap)
+	{
+		ZhongzContract zhongzContract = zhongzContractService.selectZhongzContractById(id);
+		mmap.put("zhongzContract", zhongzContract);
+	    return prefix + "/edit";
+	}
+	
+	/**
+	 * 修改保存合同
+	 */
+	@RequiresPermissions("system:zhongzContract:edit")
+	@Log(title = "合同", businessType = BusinessType.UPDATE)
+	@PostMapping("/edit")
+	@ResponseBody
+	public AjaxResult editSave(ZhongzContract zhongzContract)
+	{		
+		return toAjax(zhongzContractService.updateZhongzContract(zhongzContract));
+	}
+	
+	/**
+	 * 删除合同
+	 */
+	@RequiresPermissions("system:zhongzContract:remove")
+	@Log(title = "合同", businessType = BusinessType.DELETE)
+	@PostMapping( "/remove")
+	@ResponseBody
+	public AjaxResult remove(String ids)
+	{		
+		return toAjax(zhongzContractService.deleteZhongzContractByIds(ids));
+	}
+	
+}

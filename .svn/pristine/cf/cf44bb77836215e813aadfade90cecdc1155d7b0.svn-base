@@ -1,0 +1,79 @@
+package com.zhongz.mapper;
+
+import com.zhongz.domain.ZhongzHouse;
+
+import java.util.List;
+
+/**
+ * 房屋 数据层
+ * 
+ * @author ruoyi
+ * @date 2019-04-04
+ */
+public interface ZhongzHouseMapper 
+{
+	/**
+     * 查询房屋信息
+     * 
+     * @param id 房屋ID
+     * @return 房屋信息
+     */
+	public ZhongzHouse selectZhongzHouseById(String id);
+	
+	/**
+     * 查询房屋列表
+     * 
+     * @param zhongzHouse 房屋信息
+     * @return 房屋集合
+     */
+	public List<ZhongzHouse> selectZhongzHouseList(ZhongzHouse zhongzHouse);
+	
+	/**
+     * 新增房屋
+     * 
+     * @param zhongzHouse 房屋信息
+     * @return 结果
+     */
+	public int insertZhongzHouse(ZhongzHouse zhongzHouse);
+	
+	/**
+     * 修改房屋
+     * 
+     * @param zhongzHouse 房屋信息
+     * @return 结果
+     */
+	public int updateZhongzHouse(ZhongzHouse zhongzHouse);
+
+	/**
+	 * 删除房屋（逻辑）
+	 *
+	 * @param id 房屋ID
+	 * @return 结果
+	 */
+	public int deleteZhongzHouseById1(String id);
+
+	/**
+	 * 批量删除房屋（逻辑）
+	 *
+	 * @param ids 需要删除的数据ID
+	 * @return 结果
+	 */
+	public int deleteZhongzHouseByIds1(String[] ids);
+
+	/**
+     * 删除房屋
+     * 
+     * @param id 房屋ID
+     * @return 结果
+     */
+	public int deleteZhongzHouseById(String id);
+	
+	/**
+     * 批量删除房屋
+     * 
+     * @param ids 需要删除的数据ID
+     * @return 结果
+     */
+	public int deleteZhongzHouseByIds(String[] ids);
+	
+}

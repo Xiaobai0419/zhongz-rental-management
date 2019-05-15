@@ -1,0 +1,157 @@
+package com.ruoyi.common.core.domain;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.zhongz.rental.common.utils.UUID;
+
+/**
+ * Entity基类
+ * 
+ * @author ruoyi
+ */
+public class BaseEntity implements Serializable
+{
+    private static final long serialVersionUID = 1L;
+
+    /** 主键 */
+    private String id;
+
+    /** 搜索值 */
+    private String searchValue;
+
+    /** 创建者 */
+    private String createBy;
+
+    /** 创建时间 */
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8"
+    )
+    private Date createTime;
+
+    /** 更新者 */
+    private String updateBy;
+
+    /** 更新时间 */
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8"
+    )
+    private Date updateTime;
+
+    /** 备注 */
+    private String remark;
+
+    /** 状态（0正常 1删除 2停用） */
+    private String status1 = "0";
+
+    /** 请求参数 */
+    private Map<String, Object> params;
+
+    public void setId(String id)
+    {
+        this.id = id;
+    }
+
+    public String getId()
+    {
+        return id;
+    }
+
+    public String getSearchValue()
+    {
+        return searchValue;
+    }
+
+    public void setSearchValue(String searchValue)
+    {
+        this.searchValue = searchValue;
+    }
+
+    public String getCreateBy()
+    {
+        return createBy;
+    }
+
+    public void setCreateBy(String createBy)
+    {
+        this.createBy = createBy;
+    }
+
+    public Date getCreateTime()
+    {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime)
+    {
+        this.createTime = createTime;
+    }
+
+    public String getUpdateBy()
+    {
+        return updateBy;
+    }
+
+    public void setUpdateBy(String updateBy)
+    {
+        this.updateBy = updateBy;
+    }
+
+    public Date getUpdateTime()
+    {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime)
+    {
+        this.updateTime = updateTime;
+    }
+
+    public String getRemark()
+    {
+        return remark;
+    }
+
+    public void setRemark(String remark)
+    {
+        this.remark = remark;
+    }
+
+    public void setStatus1(String status)
+    {
+        this.status1 = status;
+    }
+
+    public String getStatus1()
+    {
+        return status1;
+    }
+
+    public Map<String, Object> getParams()
+    {
+        if (params == null)
+        {
+            params = new HashMap<>();
+        }
+        return params;
+    }
+
+    public void setParams(Map<String, Object> params)
+    {
+        this.params = params;
+    }
+
+    public void preInsert(){
+        Date d = new Date();
+        this.setId(UUID.getUUID());
+        this.setCreateTime(d);
+        this.setUpdateTime(d);
+    }
+
+    public void preUpdate(){
+        Date d = new Date();
+        this.setUpdateTime(d);
+    }
+}

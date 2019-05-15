@@ -1,0 +1,86 @@
+package com.zhongz.service.impl;
+
+import java.util.List;
+
+import com.zhongz.domain.ZhongzOrder;
+import com.zhongz.mapper.ZhongzOrderMapper;
+import com.zhongz.service.IZhongzOrderService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.ruoyi.common.core.text.Convert;
+
+/**
+ * 订单 服务层实现
+ * 
+ * @author ruoyi
+ * @date 2019-03-29
+ */
+@Service
+public class ZhongzOrderServiceImpl implements IZhongzOrderService
+{
+	@Autowired
+	private ZhongzOrderMapper zhongzOrderMapper;
+
+	/**
+     * 查询订单信息
+     * 
+     * @param id 订单ID
+     * @return 订单信息
+     */
+    @Override
+	public ZhongzOrder selectZhongzOrderById(String id)
+	{
+	    return zhongzOrderMapper.selectZhongzOrderById(id);
+	}
+	
+	/**
+     * 查询订单列表
+     * 
+     * @param zhongzOrder 订单信息
+     * @return 订单集合
+     */
+	@Override
+	public List<ZhongzOrder> selectZhongzOrderList(ZhongzOrder zhongzOrder)
+	{
+	    return zhongzOrderMapper.selectZhongzOrderList(zhongzOrder);
+	}
+	
+    /**
+     * 新增订单
+     * 
+     * @param zhongzOrder 订单信息
+     * @return 结果
+     */
+	@Override
+	public int insertZhongzOrder(ZhongzOrder zhongzOrder)
+	{
+		zhongzOrder.preInsert();
+	    return zhongzOrderMapper.insertZhongzOrder(zhongzOrder);
+	}
+	
+	/**
+     * 修改订单
+     * 
+     * @param zhongzOrder 订单信息
+     * @return 结果
+     */
+	@Override
+	public int updateZhongzOrder(ZhongzOrder zhongzOrder)
+	{
+	    zhongzOrder.preUpdate();
+		return zhongzOrderMapper.updateZhongzOrder(zhongzOrder);
+	}
+
+	/**
+     * 删除订单对象（逻辑）
+     * 
+     * @param ids 需要删除的数据ID
+     * @return 结果
+     */
+	@Override
+	public int deleteZhongzOrderByIds(String ids)
+	{
+		return zhongzOrderMapper.deleteZhongzOrderByIds1(Convert.toStrArray(ids));
+	}
+	
+}

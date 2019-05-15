@@ -1,0 +1,264 @@
+<!DOCTYPE HTML>
+<html  lang="zh" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-zhongzContract-edit" th:object="${zhongzContract}">
+            <input id="id" name="id" th:field="*{id}"  type="hidden">
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">合同类型：</label>
+				<div class="col-sm-8">
+					<input id="type" name="type" th:field="*{type}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">租住方式（整租、合租）：</label>
+				<div class="col-sm-8">
+					<input id="rentType" name="rentType" th:field="*{rentType}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">租住房屋id：</label>
+				<div class="col-sm-8">
+					<input id="houseId" name="houseId" th:field="*{houseId}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">租住房间id：</label>
+				<div class="col-sm-8">
+					<input id="roomId" name="roomId" th:field="*{roomId}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">承租人id：</label>
+				<div class="col-sm-8">
+					<input id="tenantId" name="tenantId" th:field="*{tenantId}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">委托代理人id：</label>
+				<div class="col-sm-8">
+					<input id="entrustedAgentId" name="entrustedAgentId" th:field="*{entrustedAgentId}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">受理人id：</label>
+				<div class="col-sm-8">
+					<input id="renterId" name="renterId" th:field="*{renterId}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">受理时间：</label>
+				<div class="col-sm-8">
+					<input id="acceptTime" name="acceptTime" th:field="*{acceptTime}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">受理状态：</label>
+				<div class="col-sm-8">
+					<input id="acceptStatus" name="acceptStatus" th:field="*{acceptStatus}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">受理性质：</label>
+				<div class="col-sm-8">
+					<input id="acceptType" name="acceptType" th:field="*{acceptType}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">缴费状态：</label>
+				<div class="col-sm-8">
+					<input id="payed" name="payed" th:field="*{payed}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">合同编号：</label>
+				<div class="col-sm-8">
+					<input id="contractId" name="contractId" th:field="*{contractId}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">合同状态：</label>
+				<div class="col-sm-8">
+					<input id="contractStatus" name="contractStatus" th:field="*{contractStatus}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">起租日期：</label>
+				<div class="col-sm-8">
+					<input id="rentStartTime" name="rentStartTime" th:field="*{rentStartTime}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">止租日期：</label>
+				<div class="col-sm-8">
+					<input id="rentEndTime" name="rentEndTime" th:field="*{rentEndTime}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">签约日期：</label>
+				<div class="col-sm-8">
+					<input id="signedTime" name="signedTime" th:field="*{signedTime}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">续费日期：</label>
+				<div class="col-sm-8">
+					<input id="continuationTime" name="continuationTime" th:field="*{continuationTime}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">续费周期：</label>
+				<div class="col-sm-8">
+					<input id="continuationPeriod" name="continuationPeriod" th:field="*{continuationPeriod}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">月租金：</label>
+				<div class="col-sm-8">
+					<input id="monthlyRent" name="monthlyRent" th:field="*{monthlyRent}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">押金标准：</label>
+				<div class="col-sm-8">
+					<input id="pledgeMonth" name="pledgeMonth" th:field="*{pledgeMonth}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">每平米供暖费：</label>
+				<div class="col-sm-8">
+					<input id="heatingPerSquare" name="heatingPerSquare" th:field="*{heatingPerSquare}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">每平米物业费：</label>
+				<div class="col-sm-8">
+					<input id="managementPerSquare" name="managementPerSquare" th:field="*{managementPerSquare}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">计费面积：</label>
+				<div class="col-sm-8">
+					<input id="area" name="area" th:field="*{area}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">水表值：</label>
+				<div class="col-sm-8">
+					<input id="waterWatch" name="waterWatch" th:field="*{waterWatch}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">电表值：</label>
+				<div class="col-sm-8">
+					<input id="electricWatch" name="electricWatch" th:field="*{electricWatch}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">燃气表值：</label>
+				<div class="col-sm-8">
+					<input id="gasWatch" name="gasWatch" th:field="*{gasWatch}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">欠款：</label>
+				<div class="col-sm-8">
+					<input id="debt" name="debt" th:field="*{debt}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">租金总计：</label>
+				<div class="col-sm-8">
+					<input id="rentTotal" name="rentTotal" th:field="*{rentTotal}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">支付方式：</label>
+				<div class="col-sm-8">
+					<input id="payPeriod" name="payPeriod" th:field="*{payPeriod}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">付款方式：</label>
+				<div class="col-sm-8">
+					<input id="payType" name="payType" th:field="*{payType}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">邀请码：</label>
+				<div class="col-sm-8">
+					<input id="invitationCode" name="invitationCode" th:field="*{invitationCode}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">优惠券：</label>
+				<div class="col-sm-8">
+					<input id="coupon" name="coupon" th:field="*{coupon}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">优惠说明：</label>
+				<div class="col-sm-8">
+					<input id="couponComment" name="couponComment" th:field="*{couponComment}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">创建者：</label>
+				<div class="col-sm-8">
+					<input id="createBy" name="createBy" th:field="*{createBy}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">创建时间：</label>
+				<div class="col-sm-8">
+					<input id="createTime" name="createTime" th:field="*{createTime}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">更新者：</label>
+				<div class="col-sm-8">
+					<input id="updateBy" name="updateBy" th:field="*{updateBy}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">更新时间：</label>
+				<div class="col-sm-8">
+					<input id="updateTime" name="updateTime" th:field="*{updateTime}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">备注：</label>
+				<div class="col-sm-8">
+					<input id="remark" name="remark" th:field="*{remark}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">状态（0正常 1删除 2停用）：</label>
+				<div class="col-sm-8">
+					<input id="status1" name="status1" th:field="*{status1}" class="form-control" type="text">
+				</div>
+			</div>
+		</form>
+    </div>
+    <div th:include="include::footer"></div>
+    <script type="text/javascript">
+		var prefix = ctx + "system/zhongzContract";
+		$("#form-zhongzContract-edit").validate({
+			rules:{
+				xxxx:{
+					required:true,
+				},
+			},
+			focusCleanup: true
+		});
+		
+		function submitHandler() {
+	        if ($.validate.form()) {
+	            $.operate.save(prefix + "/edit", $('#form-zhongzContract-edit').serialize());
+	        }
+	    }
+	</script>
+</body>
+</html>

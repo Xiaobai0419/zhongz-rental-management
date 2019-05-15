@@ -1,0 +1,475 @@
+package com.zhongz.domain;
+
+import com.ruoyi.common.annotation.Excel;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+import com.ruoyi.common.core.domain.BaseEntity;
+import java.util.Date;
+
+/**
+ * 订单表 zhongz_order
+ * 
+ * @author ruoyi
+ * @date 2019-03-29
+ */
+public class ZhongzOrder extends BaseEntity
+{
+	private static final long serialVersionUID = 1L;
+	
+	/** 订单类型 */
+	@Excel(name = "订单类型")
+	private Integer orderType;
+	/** 订单号 */
+	@Excel(name = "订单号")
+	private String orderId;
+	/** 订单状态 */
+	@Excel(name = "订单状态")
+	private Integer orderStatus;
+	/** 预约时间 */
+	@Excel(name = "预约时间")
+	private Date orderTime;
+	/** 租住房屋id */
+	@Excel(name = "租住房屋id")
+	private String houseId;
+	/** 承租人id */
+	@Excel(name = "承租人id")
+	private String tenantId;
+	/** 委托代理人id */
+	@Excel(name = "委托代理人id")
+	private String entrustedAgentId;
+	/** 受理人id */
+	@Excel(name = "受理人id")
+	private String renterId;
+	/** 受理时间 */
+	@Excel(name = "受理时间")
+	private Date acceptTime;
+	/** 受理状态 */
+	@Excel(name = "受理状态")
+	private Integer acceptStatus;
+	/** 受理性质 */
+	@Excel(name = "受理性质")
+	private Integer acceptType;
+	/** 缴费状态 */
+	@Excel(name = "缴费状态")
+	private Integer payed;
+	/** 合同编号 */
+	@Excel(name = "合同编号")
+	private String contractId;
+	/** 合同状态 */
+	@Excel(name = "合同状态")
+	private Integer contractStatus;
+	/** 起租日期 */
+	@Excel(name = "起租日期")
+	private Date rentStartTime;
+	/** 止租日期 */
+	@Excel(name = "止租日期")
+	private Date rentEndTime;
+	/** 签约日期 */
+	@Excel(name = "签约日期")
+	private Date signedTime;
+	/** 续费日期 */
+	@Excel(name = "续费日期")
+	private Date continuationTime;
+	/** 续费周期 */
+	@Excel(name = "续费周期")
+	private Integer continuationPeriod;
+	/** 月租金 */
+	@Excel(name = "月租金")
+	private Double monthlyRent;
+	/** 押金标准 */
+	@Excel(name = "押金标准")
+	private Integer pledgeMonth;
+	/** 每平米供暖费 */
+	@Excel(name = "每平米供暖费")
+	private Double heatingPerSquare;
+	/** 每平米物业费 */
+	@Excel(name = "每平米物业费")
+	private Double managementPerSquare;
+	/** 计费面积 */
+	@Excel(name = "计费面积")
+	private Double area;
+	/** 水表值 */
+	@Excel(name = "水表值")
+	private Double waterWatch;
+	/** 电表值 */
+	@Excel(name = "电表值")
+	private Double electricWatch;
+	/** 燃气表值 */
+	@Excel(name = "燃气表值")
+	private Double gasWatch;
+	/** 欠款 */
+	@Excel(name = "欠款")
+	private Double debt;
+	/** 租金总计 */
+	@Excel(name = "租金总计")
+	private Double rentTotal;
+	/** 支付方式 */
+	@Excel(name = "支付方式")
+	private Integer payPeriod;
+	/** 付款方式 */
+	@Excel(name = "付款方式")
+	private Integer payType;
+	/** 邀请码 */
+	@Excel(name = "邀请码")
+	private String invitationCode;
+	/** 优惠券 */
+	@Excel(name = "优惠券")
+	private String coupon;
+	/** 优惠说明 */
+	@Excel(name = "优惠说明")
+	private String couponComment;
+
+	public void setOrderType(Integer orderType) 
+	{
+		this.orderType = orderType;
+	}
+
+	public Integer getOrderType() 
+	{
+		return orderType;
+	}
+	public void setOrderId(String orderId) 
+	{
+		this.orderId = orderId;
+	}
+
+	public String getOrderId() 
+	{
+		return orderId;
+	}
+	public void setOrderStatus(Integer orderStatus) 
+	{
+		this.orderStatus = orderStatus;
+	}
+
+	public Integer getOrderStatus() 
+	{
+		return orderStatus;
+	}
+	public void setOrderTime(Date orderTime) 
+	{
+		this.orderTime = orderTime;
+	}
+
+	public Date getOrderTime() 
+	{
+		return orderTime;
+	}
+	public void setHouseId(String houseId) 
+	{
+		this.houseId = houseId;
+	}
+
+	public String getHouseId() 
+	{
+		return houseId;
+	}
+	public void setTenantId(String tenantId) 
+	{
+		this.tenantId = tenantId;
+	}
+
+	public String getTenantId() 
+	{
+		return tenantId;
+	}
+	public void setEntrustedAgentId(String entrustedAgentId) 
+	{
+		this.entrustedAgentId = entrustedAgentId;
+	}
+
+	public String getEntrustedAgentId() 
+	{
+		return entrustedAgentId;
+	}
+	public void setRenterId(String renterId) 
+	{
+		this.renterId = renterId;
+	}
+
+	public String getRenterId() 
+	{
+		return renterId;
+	}
+	public void setAcceptTime(Date acceptTime) 
+	{
+		this.acceptTime = acceptTime;
+	}
+
+	public Date getAcceptTime() 
+	{
+		return acceptTime;
+	}
+	public void setAcceptStatus(Integer acceptStatus) 
+	{
+		this.acceptStatus = acceptStatus;
+	}
+
+	public Integer getAcceptStatus() 
+	{
+		return acceptStatus;
+	}
+	public void setAcceptType(Integer acceptType) 
+	{
+		this.acceptType = acceptType;
+	}
+
+	public Integer getAcceptType() 
+	{
+		return acceptType;
+	}
+	public void setPayed(Integer payed) 
+	{
+		this.payed = payed;
+	}
+
+	public Integer getPayed() 
+	{
+		return payed;
+	}
+	public void setContractId(String contractId) 
+	{
+		this.contractId = contractId;
+	}
+
+	public String getContractId() 
+	{
+		return contractId;
+	}
+	public void setContractStatus(Integer contractStatus) 
+	{
+		this.contractStatus = contractStatus;
+	}
+
+	public Integer getContractStatus() 
+	{
+		return contractStatus;
+	}
+	public void setRentStartTime(Date rentStartTime) 
+	{
+		this.rentStartTime = rentStartTime;
+	}
+
+	public Date getRentStartTime() 
+	{
+		return rentStartTime;
+	}
+	public void setRentEndTime(Date rentEndTime) 
+	{
+		this.rentEndTime = rentEndTime;
+	}
+
+	public Date getRentEndTime() 
+	{
+		return rentEndTime;
+	}
+	public void setSignedTime(Date signedTime) 
+	{
+		this.signedTime = signedTime;
+	}
+
+	public Date getSignedTime() 
+	{
+		return signedTime;
+	}
+	public void setContinuationTime(Date continuationTime) 
+	{
+		this.continuationTime = continuationTime;
+	}
+
+	public Date getContinuationTime() 
+	{
+		return continuationTime;
+	}
+	public void setContinuationPeriod(Integer continuationPeriod) 
+	{
+		this.continuationPeriod = continuationPeriod;
+	}
+
+	public Integer getContinuationPeriod() 
+	{
+		return continuationPeriod;
+	}
+	public void setMonthlyRent(Double monthlyRent) 
+	{
+		this.monthlyRent = monthlyRent;
+	}
+
+	public Double getMonthlyRent() 
+	{
+		return monthlyRent;
+	}
+	public void setPledgeMonth(Integer pledgeMonth) 
+	{
+		this.pledgeMonth = pledgeMonth;
+	}
+
+	public Integer getPledgeMonth() 
+	{
+		return pledgeMonth;
+	}
+	public void setHeatingPerSquare(Double heatingPerSquare) 
+	{
+		this.heatingPerSquare = heatingPerSquare;
+	}
+
+	public Double getHeatingPerSquare() 
+	{
+		return heatingPerSquare;
+	}
+	public void setManagementPerSquare(Double managementPerSquare) 
+	{
+		this.managementPerSquare = managementPerSquare;
+	}
+
+	public Double getManagementPerSquare() 
+	{
+		return managementPerSquare;
+	}
+	public void setArea(Double area) 
+	{
+		this.area = area;
+	}
+
+	public Double getArea() 
+	{
+		return area;
+	}
+	public void setWaterWatch(Double waterWatch) 
+	{
+		this.waterWatch = waterWatch;
+	}
+
+	public Double getWaterWatch() 
+	{
+		return waterWatch;
+	}
+	public void setElectricWatch(Double electricWatch) 
+	{
+		this.electricWatch = electricWatch;
+	}
+
+	public Double getElectricWatch() 
+	{
+		return electricWatch;
+	}
+	public void setGasWatch(Double gasWatch) 
+	{
+		this.gasWatch = gasWatch;
+	}
+
+	public Double getGasWatch() 
+	{
+		return gasWatch;
+	}
+	public void setDebt(Double debt) 
+	{
+		this.debt = debt;
+	}
+
+	public Double getDebt() 
+	{
+		return debt;
+	}
+	public void setRentTotal(Double rentTotal) 
+	{
+		this.rentTotal = rentTotal;
+	}
+
+	public Double getRentTotal() 
+	{
+		return rentTotal;
+	}
+	public void setPayPeriod(Integer payPeriod) 
+	{
+		this.payPeriod = payPeriod;
+	}
+
+	public Integer getPayPeriod() 
+	{
+		return payPeriod;
+	}
+	public void setPayType(Integer payType) 
+	{
+		this.payType = payType;
+	}
+
+	public Integer getPayType() 
+	{
+		return payType;
+	}
+	public void setInvitationCode(String invitationCode) 
+	{
+		this.invitationCode = invitationCode;
+	}
+
+	public String getInvitationCode() 
+	{
+		return invitationCode;
+	}
+	public void setCoupon(String coupon) 
+	{
+		this.coupon = coupon;
+	}
+
+	public String getCoupon() 
+	{
+		return coupon;
+	}
+	public void setCouponComment(String couponComment) 
+	{
+		this.couponComment = couponComment;
+	}
+
+	public String getCouponComment() 
+	{
+		return couponComment;
+	}
+
+    @Override
+	public String toString() {
+        return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
+            .append("id", getId())
+            .append("orderType", getOrderType())
+            .append("orderId", getOrderId())
+            .append("orderStatus", getOrderStatus())
+            .append("orderTime", getOrderTime())
+            .append("houseId", getHouseId())
+            .append("tenantId", getTenantId())
+            .append("entrustedAgentId", getEntrustedAgentId())
+            .append("renterId", getRenterId())
+            .append("acceptTime", getAcceptTime())
+            .append("acceptStatus", getAcceptStatus())
+            .append("acceptType", getAcceptType())
+            .append("payed", getPayed())
+            .append("contractId", getContractId())
+            .append("contractStatus", getContractStatus())
+            .append("rentStartTime", getRentStartTime())
+            .append("rentEndTime", getRentEndTime())
+            .append("signedTime", getSignedTime())
+            .append("continuationTime", getContinuationTime())
+            .append("continuationPeriod", getContinuationPeriod())
+            .append("monthlyRent", getMonthlyRent())
+            .append("pledgeMonth", getPledgeMonth())
+            .append("heatingPerSquare", getHeatingPerSquare())
+            .append("managementPerSquare", getManagementPerSquare())
+            .append("area", getArea())
+            .append("waterWatch", getWaterWatch())
+            .append("electricWatch", getElectricWatch())
+            .append("gasWatch", getGasWatch())
+            .append("debt", getDebt())
+            .append("rentTotal", getRentTotal())
+            .append("payPeriod", getPayPeriod())
+            .append("payType", getPayType())
+            .append("invitationCode", getInvitationCode())
+            .append("coupon", getCoupon())
+            .append("couponComment", getCouponComment())
+            .append("createBy", getCreateBy())
+            .append("createTime", getCreateTime())
+            .append("updateBy", getUpdateBy())
+            .append("updateTime", getUpdateTime())
+            .append("remark", getRemark())
+            .append("status1", getStatus1())
+            .toString();
+    }
+}

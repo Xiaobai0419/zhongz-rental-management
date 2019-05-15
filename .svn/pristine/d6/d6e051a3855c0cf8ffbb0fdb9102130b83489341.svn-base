@@ -1,0 +1,55 @@
+package com.zhongz.service;
+
+import com.zhongz.domain.ZhongzOrder;
+
+import java.util.List;
+
+/**
+ * 订单 服务层
+ * 
+ * @author ruoyi
+ * @date 2019-03-29
+ */
+public interface IZhongzOrderService 
+{
+	/**
+     * 查询订单信息
+     * 
+     * @param id 订单ID
+     * @return 订单信息
+     */
+	public ZhongzOrder selectZhongzOrderById(String id);
+	
+	/**
+     * 查询订单列表
+     * 
+     * @param zhongzOrder 订单信息
+     * @return 订单集合
+     */
+	public List<ZhongzOrder> selectZhongzOrderList(ZhongzOrder zhongzOrder);
+	
+	/**
+     * 新增订单
+     * 
+     * @param zhongzOrder 订单信息
+     * @return 结果
+     */
+	public int insertZhongzOrder(ZhongzOrder zhongzOrder);
+	
+	/**
+     * 修改订单
+     * 
+     * @param zhongzOrder 订单信息
+     * @return 结果
+     */
+	public int updateZhongzOrder(ZhongzOrder zhongzOrder);
+		
+	/**
+     * 删除订单信息
+     * 
+     * @param ids 需要删除的数据ID
+     * @return 结果
+     */
+	public int deleteZhongzOrderByIds(String ids);
+	
+}

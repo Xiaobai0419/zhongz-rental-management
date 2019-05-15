@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhongz.mapper.ZhongzOrderMapper">
+    
+    <resultMap type="ZhongzOrder" id="ZhongzOrderResult">
+        <result property="id"    column="id"    />
+        <result property="orderType"    column="order_type"    />
+        <result property="orderId"    column="order_id"    />
+        <result property="orderStatus"    column="order_status"    />
+        <result property="orderTime"    column="order_time"    />
+        <result property="contractId"    column="contract_id"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="remark"    column="remark"    />
+        <result property="status1"    column="status1"    />
+    </resultMap>
+	
+	<sql id="selectZhongzOrderVo">
+        select id, order_type, order_id, order_status, order_time, contract_id, create_by, create_time, update_by, update_time, remark, status1 from zhongz_order
+    </sql>
+	
+    <select id="selectZhongzOrderList" parameterType="ZhongzOrder" resultMap="ZhongzOrderResult">
+        <include refid="selectZhongzOrderVo"/>
+        <where>
+            status1 = '0'
+            <if test="id != null  and id != '' "> and id = #{id}</if>
+             <if test="orderType != null "> and order_type = #{orderType}</if>
+             <if test="orderId != null  and orderId != '' "> and order_id = #{orderId}</if>
+             <if test="orderStatus != null "> and order_status = #{orderStatus}</if>
+             <if test="orderTime != null "> and order_time = #{orderTime}</if>
+             <if test="contractId != null  and contractId != '' "> and contract_id = #{contractId}</if>
+             <if test="createBy != null  and createBy != '' "> and create_by = #{createBy}</if>
+             <if test="createTime != null "> and create_time = #{createTime}</if>
+             <if test="updateBy != null  and updateBy != '' "> and update_by = #{updateBy}</if>
+             <if test="updateTime != null "> and update_time = #{updateTime}</if>
+             <if test="remark != null  and remark != '' "> and remark = #{remark}</if>
+         </where>
+    </select>
+    
+    <select id="selectZhongzOrderById" parameterType="String" resultMap="ZhongzOrderResult">
+        <include refid="selectZhongzOrderVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertZhongzOrder" parameterType="ZhongzOrder">
+        insert into zhongz_order
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null  and id != ''  ">id,</if>
+			<if test="orderType != null  ">order_type,</if>
+			<if test="orderId != null  and orderId != ''  ">order_id,</if>
+			<if test="orderStatus != null  ">order_status,</if>
+			<if test="orderTime != null  ">order_time,</if>
+            <if test="contractId != null  and contractId != ''  ">contract_id,</if>
+			<if test="createBy != null  and createBy != ''  ">create_by,</if>
+			<if test="createTime != null  ">create_time,</if>
+			<if test="updateBy != null  and updateBy != ''  ">update_by,</if>
+			<if test="updateTime != null  ">update_time,</if>
+			<if test="remark != null  and remark != ''  ">remark,</if>
+			<if test="status1 != null  and status1 != ''  ">status1,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null  and id != ''  ">#{id},</if>
+			<if test="orderType != null  ">#{orderType},</if>
+			<if test="orderId != null  and orderId != ''  ">#{orderId},</if>
+			<if test="orderStatus != null  ">#{orderStatus},</if>
+			<if test="orderTime != null  ">#{orderTime},</if>
+            <if test="contractId != null  and contractId != ''  ">contract_id,</if>
+			<if test="createBy != null  and createBy != ''  ">#{createBy},</if>
+			<if test="createTime != null  ">#{createTime},</if>
+			<if test="updateBy != null  and updateBy != ''  ">#{updateBy},</if>
+			<if test="updateTime != null  ">#{updateTime},</if>
+			<if test="remark != null  and remark != ''  ">#{remark},</if>
+			<if test="status1 != null  and status1 != ''  ">#{status1},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateZhongzOrder" parameterType="ZhongzOrder">
+        update zhongz_order
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="orderType != null  ">order_type = #{orderType},</if>
+            <if test="orderId != null  and orderId != ''  ">order_id = #{orderId},</if>
+            <if test="orderStatus != null  ">order_status = #{orderStatus},</if>
+            <if test="orderTime != null  ">order_time = #{orderTime},</if>
+            <if test="contractId != null  and contractId != ''  ">contract_id = #{contractId},</if>
+            <if test="createBy != null  and createBy != ''  ">create_by = #{createBy},</if>
+            <if test="createTime != null  ">create_time = #{createTime},</if>
+            <if test="updateBy != null  and updateBy != ''  ">update_by = #{updateBy},</if>
+            <if test="updateTime != null  ">update_time = #{updateTime},</if>
+            <if test="remark != null  and remark != ''  ">remark = #{remark},</if>
+            <if test="status1 != null  and status1 != ''  ">status1 = #{status1},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <update id="deleteZhongzOrderById1" parameterType="String">
+        update zhongz_order set status1 = '1' where id = #{id}
+    </update>
+
+    <update id="deleteZhongzOrderByIds1" parameterType="String">
+        update zhongz_order set status1 = '1' where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+	<delete id="deleteZhongzOrderById" parameterType="String">
+        delete from zhongz_order where id = #{id}
+    </delete>
+	
+    <delete id="deleteZhongzOrderByIds" parameterType="String">
+        delete from zhongz_order where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

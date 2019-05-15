@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhongz.mapper.ZhongzHouseMapper">
+    
+    <resultMap type="ZhongzHouse" id="ZhongzHouseResult">
+        <result property="id"    column="id"    />
+        <result property="rentStatus"    column="rent_status"    />
+        <result property="rentType"    column="rent_type"    />
+        <result property="address"    column="address"    />
+        <result property="longitude"    column="longitude"    />
+        <result property="latitude"    column="latitude"    />
+        <result property="title"    column="title"    />
+        <result property="description"    column="description"    />
+        <result property="estateId"    column="estate_id"    />
+        <result property="region"    column="region"    />
+        <result property="building"    column="building"    />
+        <result property="unit"    column="unit"    />
+        <result property="roomNumber"    column="room_number"    />
+        <result property="floor"    column="floor"    />
+        <result property="floors"    column="floors"    />
+        <result property="structure"    column="structure"    />
+        <result property="area"    column="area"    />
+        <result property="direction"    column="direction"    />
+        <result property="monthlyRent"    column="monthly_rent"    />
+        <result property="rentTypes"    column="rent_types"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="remark"    column="remark"    />
+        <result property="status1"    column="status1"    />
+        <result property="picture1"    column="picture1"    />
+        <result property="picture2"    column="picture2"    />
+        <result property="picture3"    column="picture3"    />
+        <result property="picture4"    column="picture4"    />
+        <result property="picture5"    column="picture5"    />
+        <result property="picture6"    column="picture6"    />
+        <result property="overallView"    column="overall_view"    />
+        <result property="video"    column="video"    />
+        <result property="softConfigs"    column="soft_configs"    />
+        <result property="electricConfigs"    column="electric_configs"    />
+        <result property="tags"    column="tags"    />
+        <result property="frontend"    column="frontend"    />
+    </resultMap>
+	
+	<sql id="selectZhongzHouseVo">
+        select id, rent_status, rent_type, address, longitude, latitude, title, description, estate_id, region, building, unit, room_number, floor, floors, structure, area, direction, monthly_rent, rent_types, create_by, create_time, update_by, update_time, remark, status1, picture1, picture2, picture3, picture4, picture5, picture6, overall_view, video, soft_configs, electric_configs, tags, frontend from zhongz_house
+    </sql>
+	
+    <select id="selectZhongzHouseList" parameterType="ZhongzHouse" resultMap="ZhongzHouseResult">
+        <include refid="selectZhongzHouseVo"/>
+        <where>
+            status1 = '0'
+            <if test="id != null  and id != '' "> and id = #{id}</if>
+             <if test="rentStatus != null "> and rent_status = #{rentStatus}</if>
+             <if test="rentType != null "> and rent_type = #{rentType}</if>
+             <if test="address != null  and address != '' "> and address = #{address}</if>
+             <if test="longitude != null "> and longitude = #{longitude}</if>
+             <if test="latitude != null "> and latitude = #{latitude}</if>
+             <if test="title != null  and title != '' "> and title = #{title}</if>
+             <if test="description != null  and description != '' "> and description = #{description}</if>
+             <if test="estateId != null  and estateId != '' "> and estate_id = #{estateId}</if>
+             <if test="region != null  and region != '' "> and region = #{region}</if>
+             <if test="building != null "> and building = #{building}</if>
+             <if test="unit != null "> and unit = #{unit}</if>
+             <if test="roomNumber != null  and roomNumber != '' "> and room_number = #{roomNumber}</if>
+             <if test="floor != null "> and floor = #{floor}</if>
+             <if test="floors != null "> and floors = #{floors}</if>
+             <if test="structure != null "> and structure = #{structure}</if>
+             <if test="area != null "> and area = #{area}</if>
+             <if test="direction != null "> and direction = #{direction}</if>
+             <if test="monthlyRent != null "> and monthly_rent = #{monthlyRent}</if>
+             <if test="rentTypes != null  and rentTypes != '' "> and rent_types = #{rentTypes}</if>
+             <if test="createBy != null  and createBy != '' "> and create_by = #{createBy}</if>
+             <if test="createTime != null "> and create_time = #{createTime}</if>
+             <if test="updateBy != null  and updateBy != '' "> and update_by = #{updateBy}</if>
+             <if test="updateTime != null "> and update_time = #{updateTime}</if>
+             <if test="remark != null  and remark != '' "> and remark = #{remark}</if>
+             <if test="picture1 != null  and picture1 != '' "> and picture1 = #{picture1}</if>
+             <if test="picture2 != null  and picture2 != '' "> and picture2 = #{picture2}</if>
+             <if test="picture3 != null  and picture3 != '' "> and picture3 = #{picture3}</if>
+             <if test="picture4 != null  and picture4 != '' "> and picture4 = #{picture4}</if>
+             <if test="picture5 != null  and picture5 != '' "> and picture5 = #{picture5}</if>
+             <if test="picture6 != null  and picture6 != '' "> and picture6 = #{picture6}</if>
+             <if test="overallView != null  and overallView != '' "> and overall_view = #{overallView}</if>
+             <if test="video != null  and video != '' "> and video = #{video}</if>
+             <if test="softConfigs != null  and softConfigs != '' "> and soft_configs = #{softConfigs}</if>
+             <if test="electricConfigs != null  and electricConfigs != '' "> and electric_configs = #{electricConfigs}</if>
+             <if test="tags != null  and tags != '' "> and tags = #{tags}</if>
+             <if test="frontend != null "> and frontend = #{frontend}</if>
+         </where>
+    </select>
+    
+    <select id="selectZhongzHouseById" parameterType="String" resultMap="ZhongzHouseResult">
+        <include refid="selectZhongzHouseVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertZhongzHouse" parameterType="ZhongzHouse">
+        insert into zhongz_house
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null  and id != ''  ">id,</if>
+			<if test="rentStatus != null  ">rent_status,</if>
+			<if test="rentType != null  ">rent_type,</if>
+			<if test="address != null  and address != ''  ">address,</if>
+			<if test="longitude != null  ">longitude,</if>
+			<if test="latitude != null  ">latitude,</if>
+			<if test="title != null  and title != ''  ">title,</if>
+			<if test="description != null  and description != ''  ">description,</if>
+			<if test="estateId != null  and estateId != ''  ">estate_id,</if>
+			<if test="region != null  and region != ''  ">region,</if>
+			<if test="building != null  ">building,</if>
+			<if test="unit != null  ">unit,</if>
+			<if test="roomNumber != null  and roomNumber != ''  ">room_number,</if>
+			<if test="floor != null  ">floor,</if>
+			<if test="floors != null  ">floors,</if>
+			<if test="structure != null  ">structure,</if>
+			<if test="area != null  ">area,</if>
+			<if test="direction != null  ">direction,</if>
+			<if test="monthlyRent != null  ">monthly_rent,</if>
+			<if test="rentTypes != null  and rentTypes != ''  ">rent_types,</if>
+			<if test="createBy != null  and createBy != ''  ">create_by,</if>
+			<if test="createTime != null  ">create_time,</if>
+			<if test="updateBy != null  and updateBy != ''  ">update_by,</if>
+			<if test="updateTime != null  ">update_time,</if>
+			<if test="remark != null  and remark != ''  ">remark,</if>
+			<if test="status1 != null  and status1 != ''  ">status1,</if>
+			<if test="picture1 != null  and picture1 != ''  ">picture1,</if>
+			<if test="picture2 != null  and picture2 != ''  ">picture2,</if>
+			<if test="picture3 != null  and picture3 != ''  ">picture3,</if>
+			<if test="picture4 != null  and picture4 != ''  ">picture4,</if>
+			<if test="picture5 != null  and picture5 != ''  ">picture5,</if>
+			<if test="picture6 != null  and picture6 != ''  ">picture6,</if>
+			<if test="overallView != null  and overallView != ''  ">overall_view,</if>
+			<if test="video != null  and video != ''  ">video,</if>
+			<if test="softConfigs != null  and softConfigs != ''  ">soft_configs,</if>
+			<if test="electricConfigs != null  and electricConfigs != ''  ">electric_configs,</if>
+			<if test="tags != null  and tags != ''  ">tags,</if>
+			<if test="frontend != null  ">frontend,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null  and id != ''  ">#{id},</if>
+			<if test="rentStatus != null  ">#{rentStatus},</if>
+			<if test="rentType != null  ">#{rentType},</if>
+			<if test="address != null  and address != ''  ">#{address},</if>
+			<if test="longitude != null  ">#{longitude},</if>
+			<if test="latitude != null  ">#{latitude},</if>
+			<if test="title != null  and title != ''  ">#{title},</if>
+			<if test="description != null  and description != ''  ">#{description},</if>
+			<if test="estateId != null  and estateId != ''  ">#{estateId},</if>
+			<if test="region != null  and region != ''  ">#{region},</if>
+			<if test="building != null  ">#{building},</if>
+			<if test="unit != null  ">#{unit},</if>
+			<if test="roomNumber != null  and roomNumber != ''  ">#{roomNumber},</if>
+			<if test="floor != null  ">#{floor},</if>
+			<if test="floors != null  ">#{floors},</if>
+			<if test="structure != null  ">#{structure},</if>
+			<if test="area != null  ">#{area},</if>
+			<if test="direction != null  ">#{direction},</if>
+			<if test="monthlyRent != null  ">#{monthlyRent},</if>
+			<if test="rentTypes != null  and rentTypes != ''  ">#{rentTypes},</if>
+			<if test="createBy != null  and createBy != ''  ">#{createBy},</if>
+			<if test="createTime != null  ">#{createTime},</if>
+			<if test="updateBy != null  and updateBy != ''  ">#{updateBy},</if>
+			<if test="updateTime != null  ">#{updateTime},</if>
+			<if test="remark != null  and remark != ''  ">#{remark},</if>
+			<if test="status1 != null  and status1 != ''  ">#{status1},</if>
+			<if test="picture1 != null  and picture1 != ''  ">#{picture1},</if>
+			<if test="picture2 != null  and picture2 != ''  ">#{picture2},</if>
+			<if test="picture3 != null  and picture3 != ''  ">#{picture3},</if>
+			<if test="picture4 != null  and picture4 != ''  ">#{picture4},</if>
+			<if test="picture5 != null  and picture5 != ''  ">#{picture5},</if>
+			<if test="picture6 != null  and picture6 != ''  ">#{picture6},</if>
+			<if test="overallView != null  and overallView != ''  ">#{overallView},</if>
+			<if test="video != null  and video != ''  ">#{video},</if>
+			<if test="softConfigs != null  and softConfigs != ''  ">#{softConfigs},</if>
+			<if test="electricConfigs != null  and electricConfigs != ''  ">#{electricConfigs},</if>
+			<if test="tags != null  and tags != ''  ">#{tags},</if>
+			<if test="frontend != null  ">#{frontend},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateZhongzHouse" parameterType="ZhongzHouse">
+        update zhongz_house
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="rentStatus != null  ">rent_status = #{rentStatus},</if>
+            <if test="rentType != null  ">rent_type = #{rentType},</if>
+            <if test="address != null  and address != ''  ">address = #{address},</if>
+            <if test="longitude != null  ">longitude = #{longitude},</if>
+            <if test="latitude != null  ">latitude = #{latitude},</if>
+            <if test="title != null  and title != ''  ">title = #{title},</if>
+            <if test="description != null  and description != ''  ">description = #{description},</if>
+            <if test="estateId != null  and estateId != ''  ">estate_id = #{estateId},</if>
+            <if test="region != null  and region != ''  ">region = #{region},</if>
+            <if test="building != null  ">building = #{building},</if>
+            <if test="unit != null  ">unit = #{unit},</if>
+            <if test="roomNumber != null  and roomNumber != ''  ">room_number = #{roomNumber},</if>
+            <if test="floor != null  ">floor = #{floor},</if>
+            <if test="floors != null  ">floors = #{floors},</if>
+            <if test="structure != null  ">structure = #{structure},</if>
+            <if test="area != null  ">area = #{area},</if>
+            <if test="direction != null  ">direction = #{direction},</if>
+            <if test="monthlyRent != null  ">monthly_rent = #{monthlyRent},</if>
+            <if test="rentTypes != null  and rentTypes != ''  ">rent_types = #{rentTypes},</if>
+            <if test="createBy != null  and createBy != ''  ">create_by = #{createBy},</if>
+            <if test="createTime != null  ">create_time = #{createTime},</if>
+            <if test="updateBy != null  and updateBy != ''  ">update_by = #{updateBy},</if>
+            <if test="updateTime != null  ">update_time = #{updateTime},</if>
+            <if test="remark != null  and remark != ''  ">remark = #{remark},</if>
+            <if test="status1 != null  and status1 != ''  ">status1 = #{status1},</if>
+            <if test="picture1 != null  and picture1 != ''  ">picture1 = #{picture1},</if>
+            <if test="picture2 != null  and picture2 != ''  ">picture2 = #{picture2},</if>
+            <if test="picture3 != null  and picture3 != ''  ">picture3 = #{picture3},</if>
+            <if test="picture4 != null  and picture4 != ''  ">picture4 = #{picture4},</if>
+            <if test="picture5 != null  and picture5 != ''  ">picture5 = #{picture5},</if>
+            <if test="picture6 != null  and picture6 != ''  ">picture6 = #{picture6},</if>
+            <if test="overallView != null  and overallView != ''  ">overall_view = #{overallView},</if>
+            <if test="video != null  and video != ''  ">video = #{video},</if>
+            <if test="softConfigs != null  and softConfigs != ''  ">soft_configs = #{softConfigs},</if>
+            <if test="electricConfigs != null  and electricConfigs != ''  ">electric_configs = #{electricConfigs},</if>
+            <if test="tags != null  and tags != ''  ">tags = #{tags},</if>
+            <if test="frontend != null  ">frontend = #{frontend},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <update id="deleteZhongzHouseById1" parameterType="String">
+        update zhongz_house set status1 = '1' where id = #{id}
+    </update>
+
+    <update id="deleteZhongzHouseByIds1" parameterType="String">
+        update zhongz_house set status1 = '1' where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+	<delete id="deleteZhongzHouseById" parameterType="String">
+        delete from zhongz_house where id = #{id}
+    </delete>
+	
+    <delete id="deleteZhongzHouseByIds" parameterType="String">
+        delete from zhongz_house where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

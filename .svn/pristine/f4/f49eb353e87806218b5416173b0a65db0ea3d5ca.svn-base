@@ -1,0 +1,405 @@
+package com.zhongz.domain;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+import com.ruoyi.common.core.domain.BaseEntity;
+import java.util.Date;
+
+/**
+ * 房屋表 zhongz_house
+ * 
+ * @author ruoyi
+ * @date 2019-04-04
+ */
+public class ZhongzHouse extends BaseEntity
+{
+	private static final long serialVersionUID = 1L;
+	
+	/** 房子租住状态 */
+	private Integer rentStatus;
+	/** 租住方式（整租、合租） */
+	private Integer rentType;
+	/** 房屋位置 */
+	private String address;
+	/** 经度 */
+	private Double longitude;
+	/** 纬度 */
+	private Double latitude;
+	/** 房屋标题描述 */
+	private String title;
+	/** 房屋描述 */
+	private String description;
+	/** 小区id */
+	private String estateId;
+	/** 区域 */
+	private String region;
+	/** 幢 */
+	private Integer building;
+	/** 单元 */
+	private Integer unit;
+	/** 室 */
+	private String roomNumber;
+	/** 楼层 */
+	private Integer floor;
+	/** 总楼层 */
+	private Integer floors;
+	/** 户型 */
+	private Integer structure;
+	/** 面积 */
+	private Double area;
+	/** 朝向 */
+	private Integer direction;
+	/** 月租金 */
+	private Double monthlyRent;
+	/** 支付租金方式 */
+	private String rentTypes;
+	/** 第1张图片 */
+	private String picture1;
+	/** 第2张图片 */
+	private String picture2;
+	/** 第3张图片 */
+	private String picture3;
+	/** 第4张图片 */
+	private String picture4;
+	/** 第5张图片 */
+	private String picture5;
+	/** 第6张图片 */
+	private String picture6;
+	/** 720°全景看房 */
+	private String overallView;
+	/** 视频看房 */
+	private String video;
+	/** 房屋软装配置 */
+	private String softConfigs;
+	/** 房屋电器配置 */
+	private String electricConfigs;
+	/** 热度标签 */
+	private String tags;
+	/** 前端展示 */
+	private Integer frontend;
+
+	public void setRentStatus(Integer rentStatus)
+	{
+		this.rentStatus = rentStatus;
+	}
+
+	public Integer getRentStatus() 
+	{
+		return rentStatus;
+	}
+	public void setRentType(Integer rentType) 
+	{
+		this.rentType = rentType;
+	}
+
+	public Integer getRentType() 
+	{
+		return rentType;
+	}
+	public void setAddress(String address) 
+	{
+		this.address = address;
+	}
+
+	public String getAddress() 
+	{
+		return address;
+	}
+	public void setLongitude(Double longitude) 
+	{
+		this.longitude = longitude;
+	}
+
+	public Double getLongitude() 
+	{
+		return longitude;
+	}
+	public void setLatitude(Double latitude) 
+	{
+		this.latitude = latitude;
+	}
+
+	public Double getLatitude() 
+	{
+		return latitude;
+	}
+	public void setTitle(String title) 
+	{
+		this.title = title;
+	}
+
+	public String getTitle() 
+	{
+		return title;
+	}
+	public void setDescription(String description) 
+	{
+		this.description = description;
+	}
+
+	public String getDescription() 
+	{
+		return description;
+	}
+	public void setEstateId(String estateId) 
+	{
+		this.estateId = estateId;
+	}
+
+	public String getEstateId() 
+	{
+		return estateId;
+	}
+	public void setRegion(String region) 
+	{
+		this.region = region;
+	}
+
+	public String getRegion() 
+	{
+		return region;
+	}
+	public void setBuilding(Integer building) 
+	{
+		this.building = building;
+	}
+
+	public Integer getBuilding() 
+	{
+		return building;
+	}
+	public void setUnit(Integer unit) 
+	{
+		this.unit = unit;
+	}
+
+	public Integer getUnit() 
+	{
+		return unit;
+	}
+	public void setRoomNumber(String roomNumber) 
+	{
+		this.roomNumber = roomNumber;
+	}
+
+	public String getRoomNumber() 
+	{
+		return roomNumber;
+	}
+	public void setFloor(Integer floor) 
+	{
+		this.floor = floor;
+	}
+
+	public Integer getFloor() 
+	{
+		return floor;
+	}
+	public void setFloors(Integer floors) 
+	{
+		this.floors = floors;
+	}
+
+	public Integer getFloors() 
+	{
+		return floors;
+	}
+	public void setStructure(Integer structure) 
+	{
+		this.structure = structure;
+	}
+
+	public Integer getStructure() 
+	{
+		return structure;
+	}
+	public void setArea(Double area) 
+	{
+		this.area = area;
+	}
+
+	public Double getArea() 
+	{
+		return area;
+	}
+	public void setDirection(Integer direction) 
+	{
+		this.direction = direction;
+	}
+
+	public Integer getDirection() 
+	{
+		return direction;
+	}
+	public void setMonthlyRent(Double monthlyRent) 
+	{
+		this.monthlyRent = monthlyRent;
+	}
+
+	public Double getMonthlyRent() 
+	{
+		return monthlyRent;
+	}
+	public void setRentTypes(String rentTypes) 
+	{
+		this.rentTypes = rentTypes;
+	}
+
+	public String getRentTypes() 
+	{
+		return rentTypes;
+	}
+
+	public void setPicture1(String picture1) 
+	{
+		this.picture1 = picture1;
+	}
+
+	public String getPicture1() 
+	{
+		return picture1;
+	}
+	public void setPicture2(String picture2) 
+	{
+		this.picture2 = picture2;
+	}
+
+	public String getPicture2() 
+	{
+		return picture2;
+	}
+	public void setPicture3(String picture3) 
+	{
+		this.picture3 = picture3;
+	}
+
+	public String getPicture3() 
+	{
+		return picture3;
+	}
+	public void setPicture4(String picture4) 
+	{
+		this.picture4 = picture4;
+	}
+
+	public String getPicture4() 
+	{
+		return picture4;
+	}
+	public void setPicture5(String picture5) 
+	{
+		this.picture5 = picture5;
+	}
+
+	public String getPicture5() 
+	{
+		return picture5;
+	}
+	public void setPicture6(String picture6) 
+	{
+		this.picture6 = picture6;
+	}
+
+	public String getPicture6() 
+	{
+		return picture6;
+	}
+	public void setOverallView(String overallView) 
+	{
+		this.overallView = overallView;
+	}
+
+	public String getOverallView() 
+	{
+		return overallView;
+	}
+	public void setVideo(String video) 
+	{
+		this.video = video;
+	}
+
+	public String getVideo() 
+	{
+		return video;
+	}
+	public void setSoftConfigs(String softConfigs) 
+	{
+		this.softConfigs = softConfigs;
+	}
+
+	public String getSoftConfigs() 
+	{
+		return softConfigs;
+	}
+	public void setElectricConfigs(String electricConfigs) 
+	{
+		this.electricConfigs = electricConfigs;
+	}
+
+	public String getElectricConfigs() 
+	{
+		return electricConfigs;
+	}
+	public void setTags(String tags) 
+	{
+		this.tags = tags;
+	}
+
+	public String getTags() 
+	{
+		return tags;
+	}
+	public void setFrontend(Integer frontend) 
+	{
+		this.frontend = frontend;
+	}
+
+	public Integer getFrontend() 
+	{
+		return frontend;
+	}
+
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
+				.append("id", getId())
+				.append("rentStatus", getRentStatus())
+				.append("rentType", getRentType())
+				.append("address", getAddress())
+				.append("longitude", getLongitude())
+				.append("latitude", getLatitude())
+				.append("title", getTitle())
+				.append("description", getDescription())
+				.append("estateId", getEstateId())
+				.append("region", getRegion())
+				.append("building", getBuilding())
+				.append("unit", getUnit())
+				.append("roomNumber", getRoomNumber())
+				.append("floor", getFloor())
+				.append("floors", getFloors())
+				.append("structure", getStructure())
+				.append("area", getArea())
+				.append("direction", getDirection())
+				.append("monthlyRent", getMonthlyRent())
+				.append("rentTypes", getRentTypes())
+				.append("createBy", getCreateBy())
+				.append("createTime", getCreateTime())
+				.append("updateBy", getUpdateBy())
+				.append("updateTime", getUpdateTime())
+				.append("remark", getRemark())
+				.append("status1", getStatus1())
+				.append("picture1", getPicture1())
+				.append("picture2", getPicture2())
+				.append("picture3", getPicture3())
+				.append("picture4", getPicture4())
+				.append("picture5", getPicture5())
+				.append("picture6", getPicture6())
+				.append("overallView", getOverallView())
+				.append("video", getVideo())
+				.append("softConfigs", getSoftConfigs())
+				.append("electricConfigs", getElectricConfigs())
+				.append("tags", getTags())
+				.append("frontend", getFrontend())
+				.toString();
+	}
+}

@@ -1,0 +1,86 @@
+package com.zhongz.service.impl;
+
+import java.util.List;
+
+import com.zhongz.domain.ZhongzUser;
+import com.zhongz.mapper.ZhongzUserMapper;
+import com.zhongz.service.IZhongzUserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.ruoyi.common.core.text.Convert;
+
+/**
+ * 用户 服务层实现
+ * 
+ * @author ruoyi
+ * @date 2019-04-04
+ */
+@Service
+public class ZhongzUserServiceImpl implements IZhongzUserService
+{
+	@Autowired
+	private ZhongzUserMapper zhongzUserMapper;
+
+	/**
+     * 查询用户信息
+     * 
+     * @param id 用户ID
+     * @return 用户信息
+     */
+    @Override
+	public ZhongzUser selectZhongzUserById(String id)
+	{
+	    return zhongzUserMapper.selectZhongzUserById(id);
+	}
+	
+	/**
+     * 查询用户列表
+     * 
+     * @param zhongzUser 用户信息
+     * @return 用户集合
+     */
+	@Override
+	public List<ZhongzUser> selectZhongzUserList(ZhongzUser zhongzUser)
+	{
+	    return zhongzUserMapper.selectZhongzUserList(zhongzUser);
+	}
+	
+    /**
+     * 新增用户
+     * 
+     * @param zhongzUser 用户信息
+     * @return 结果
+     */
+	@Override
+	public int insertZhongzUser(ZhongzUser zhongzUser)
+	{
+		zhongzUser.preInsert();
+		return zhongzUserMapper.insertZhongzUser(zhongzUser);
+	}
+	
+	/**
+     * 修改用户
+     * 
+     * @param zhongzUser 用户信息
+     * @return 结果
+     */
+	@Override
+	public int updateZhongzUser(ZhongzUser zhongzUser)
+	{
+		zhongzUser.preUpdate();
+		return zhongzUserMapper.updateZhongzUser(zhongzUser);
+	}
+
+	/**
+     * 删除用户对象
+     * 
+     * @param ids 需要删除的数据ID
+     * @return 结果
+     */
+	@Override
+	public int deleteZhongzUserByIds(String ids)
+	{
+		return zhongzUserMapper.deleteZhongzUserByIds1(Convert.toStrArray(ids));
+	}
+	
+}

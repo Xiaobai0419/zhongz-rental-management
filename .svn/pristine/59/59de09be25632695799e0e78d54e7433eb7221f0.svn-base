@@ -1,0 +1,132 @@
+package com.zhongz.service.impl;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import com.zhongz.domain.ZhongzContract;
+import com.zhongz.domain.ZhongzOrder;
+import com.zhongz.mapper.ZhongzContractMapper;
+import com.zhongz.mapper.ZhongzOrderMapper;
+import com.zhongz.service.IZhongzOrderService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.ruoyi.common.core.text.Convert;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+/**
+ * 订单 服务层实现
+ * 
+ * @author ruoyi
+ * @date 2019-03-29
+ */
+@Service
+public class ZhongzOrderServiceImpl implements IZhongzOrderService
+{
+	@Autowired
+	private ZhongzOrderMapper zhongzOrderMapper;
+	@Autowired
+	private ZhongzContractMapper zhongzContractMapper;
+
+	/**
+     * 查询订单信息
+     * 
+     * @param id 订单ID
+     * @return 订单信息
+     */
+    @Override
+	public ZhongzOrder selectZhongzOrderById(String id)
+	{
+	    return zhongzOrderMapper.selectZhongzOrderById(id);
+	}
+	
+	/**
+     * 查询订单列表
+     * 
+     * @param zhongzOrder 订单信息
+     * @return 订单集合
+     */
+	@Override
+	public List<ZhongzOrder> selectZhongzOrderList(ZhongzOrder zhongzOrder)
+	{
+		ZhongzContract contractParam = zhongzOrder.getContract();
+		if(contractParam == null) {
+			contractParam = new ZhongzContract();
+		}
+		List<ZhongzOrder> orders = zhongzOrderMapper.selectZhongzOrderList(zhongzOrder);
+		List<ZhongzContract> contracts = zhongzContractMapper.selectZhongzContractList(contractParam);
+		if(contracts != null && contracts.size() > 0) {
+			Map<String,ZhongzContract> contractMap = new HashMap<>();
+			for(ZhongzContract contract : contracts) {
+				contractMap.put(contract.getContractId(),contract);
+			}
+			for(ZhongzOrder order : orders) {
+				order.setContract(contractMap.get(order.getContractId()));
+			}
+		}
+		return orders;
+	}
+	
+    /**
+     * 新增订单
+     * 
+     * @param zhongzOrder 订单信息
+     * @return 结果
+     */
+    @Transactional(propagation = Propagation.REQUIRED,isolation = Isolation.READ_COMMITTED,readOnly = false)
+	@Override
+	public int insertZhongzOrder(ZhongzOrder zhongzOrder)
+	{
+		zhongzOrder.preInsert();
+		ZhongzContract contractParam = zhongzOrder.getContract();
+		if(contractParam != null) {
+			contractParam.preInsert();
+			int result1 = zhongzOrderMapper.insertZhongzOrder(zhongzOrder);
+			int result2 = zhongzContractMapper.insertZhongzContract(contractParam);
+			if(result1 > 0 && result2 > 0) {
+				return 1;
+			}
+		}
+		return 0;
+	}
+	
+	/**
+     * 修改订单
+     * 
+     * @param zhongzOrder 订单信息
+     * @return 结果
+     */
+	@Transactional(propagation = Propagation.REQUIRED,isolation = Isolation.READ_COMMITTED,readOnly = false)
+	@Override
+	public int updateZhongzOrder(ZhongzOrder zhongzOrder)
+	{
+	    zhongzOrder.preUpdate();
+		ZhongzContract contractParam = zhongzOrder.getContract();
+		if(contractParam != null) {
+			contractParam.preUpdate();
+			int result1 = zhongzOrderMapper.updateZhongzOrder(zhongzOrder);
+			int result2 = zhongzContractMapper.updateZhongzContract(contractParam);
+			if(result1 > 0 && result2 > 0) {
+				return 1;
+			}
+		}
+		return 0;
+	}
+
+	/**
+     * 删除订单对象（逻辑）
+     * 
+     * @param ids 需要删除的数据ID
+     * @return 结果
+     */
+	@Transactional(propagation = Propagation.REQUIRED,isolation = Isolation.READ_COMMITTED,readOnly = false)
+	@Override
+	public int deleteZhongzOrderByIds(String ids)
+	{
+
+		return zhongzOrderMapper.deleteZhongzOrderByIds1(Convert.toStrArray(ids));
+	}
+	
+}

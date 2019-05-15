@@ -1,0 +1,228 @@
+<!DOCTYPE HTML>
+<html  lang="zh" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-zhongzHouse-edit" th:object="${zhongzHouse}">
+            <input id="id" name="id" th:field="*{id}"  type="hidden">
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">房子租住状态：</label>
+				<div class="col-sm-8">
+					<input id="rentStatus" name="rentStatus" th:field="*{rentStatus}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">租住方式（整租、合租）：</label>
+				<div class="col-sm-8">
+					<input id="rentType" name="rentType" th:field="*{rentType}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">房屋位置：</label>
+				<div class="col-sm-8">
+					<input id="address" name="address" th:field="*{address}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">经度：</label>
+				<div class="col-sm-8">
+					<input id="longitude" name="longitude" th:field="*{longitude}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">纬度：</label>
+				<div class="col-sm-8">
+					<input id="latitude" name="latitude" th:field="*{latitude}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">房屋标题描述：</label>
+				<div class="col-sm-8">
+					<input id="title" name="title" th:field="*{title}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">房屋描述：</label>
+				<div class="col-sm-8">
+					<input id="description" name="description" th:field="*{description}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">小区id：</label>
+				<div class="col-sm-8">
+					<input id="estateId" name="estateId" th:field="*{estateId}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">小区名，冗余存储：</label>
+				<div class="col-sm-8">
+					<input id="estateName" name="estateName" th:field="*{estateName}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">区域：</label>
+				<div class="col-sm-8">
+					<input id="region" name="region" th:field="*{region}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">幢：</label>
+				<div class="col-sm-8">
+					<input id="building" name="building" th:field="*{building}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">单元：</label>
+				<div class="col-sm-8">
+					<input id="unit" name="unit" th:field="*{unit}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">室：</label>
+				<div class="col-sm-8">
+					<input id="roomNumber" name="roomNumber" th:field="*{roomNumber}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">楼层：</label>
+				<div class="col-sm-8">
+					<input id="floor" name="floor" th:field="*{floor}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">总楼层：</label>
+				<div class="col-sm-8">
+					<input id="floors" name="floors" th:field="*{floors}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">户型：</label>
+				<div class="col-sm-8">
+					<input id="structure" name="structure" th:field="*{structure}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">户型名，冗余存储：</label>
+				<div class="col-sm-8">
+					<input id="structureName" name="structureName" th:field="*{structureName}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">面积：</label>
+				<div class="col-sm-8">
+					<input id="area" name="area" th:field="*{area}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">朝向：</label>
+				<div class="col-sm-8">
+					<input id="direction" name="direction" th:field="*{direction}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">朝向名，冗余存储：</label>
+				<div class="col-sm-8">
+					<input id="directionName" name="directionName" th:field="*{directionName}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">月租金：</label>
+				<div class="col-sm-8">
+					<input id="monthlyRent" name="monthlyRent" th:field="*{monthlyRent}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">创建者：</label>
+				<div class="col-sm-8">
+					<input id="createBy" name="createBy" th:field="*{createBy}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">创建时间：</label>
+				<div class="col-sm-8">
+					<input id="createTime" name="createTime" th:field="*{createTime}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">更新者：</label>
+				<div class="col-sm-8">
+					<input id="updateBy" name="updateBy" th:field="*{updateBy}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">更新时间：</label>
+				<div class="col-sm-8">
+					<input id="updateTime" name="updateTime" th:field="*{updateTime}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">备注：</label>
+				<div class="col-sm-8">
+					<input id="remark" name="remark" th:field="*{remark}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">状态（0正常 1删除 2停用）：</label>
+				<div class="col-sm-8">
+					<input id="status1" name="status1" th:field="*{status1}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">房屋软装配置：</label>
+				<div class="col-sm-8">
+					<input id="softConfigs" name="softConfigs" th:field="*{softConfigs}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">房屋电器配置：</label>
+				<div class="col-sm-8">
+					<input id="electricConfigs" name="electricConfigs" th:field="*{electricConfigs}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">热度标签：</label>
+				<div class="col-sm-8">
+					<input id="tags" name="tags" th:field="*{tags}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">前端展示：</label>
+				<div class="col-sm-8">
+					<input id="frontend" name="frontend" th:field="*{frontend}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">总热度值：</label>
+				<div class="col-sm-8">
+					<input id="tagsValue" name="tagsValue" th:field="*{tagsValue}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">第一张图，冗余存储：</label>
+				<div class="col-sm-8">
+					<input id="firstPicture" name="firstPicture" th:field="*{firstPicture}" class="form-control" type="text">
+				</div>
+			</div>
+		</form>
+    </div>
+    <div th:include="include::footer"></div>
+    <script type="text/javascript">
+		var prefix = ctx + "system/zhongzHouse";
+		$("#form-zhongzHouse-edit").validate({
+			rules:{
+				xxxx:{
+					required:true,
+				},
+			},
+			focusCleanup: true
+		});
+		
+		function submitHandler() {
+	        if ($.validate.form()) {
+	            $.operate.save(prefix + "/edit", $('#form-zhongzHouse-edit').serialize());
+	        }
+	    }
+	</script>
+</body>
+</html>

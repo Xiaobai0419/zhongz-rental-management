@@ -1,0 +1,124 @@
+package com.zhongz.rental.web.controller;
+
+import com.ruoyi.common.annotation.Log;
+import com.ruoyi.common.core.controller.BaseController;
+import com.ruoyi.common.core.domain.AjaxResult;
+import com.ruoyi.common.core.page.TableDataInfo;
+import com.ruoyi.common.enums.BusinessType;
+import com.ruoyi.common.utils.poi.ExcelUtil;
+import com.zhongz.rental.domain.ZhongzHouse;
+import com.zhongz.rental.service.IZhongzHouseService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+/**
+ * 房屋 信息操作处理
+ * 
+ * @author ruoyi
+ * @date 2019-04-04
+ */
+@Controller
+@RequestMapping("/system/zhongzHouse")
+public class ZhongzHouseController extends BaseController
+{
+    private String prefix = "zhongz/rental/house";
+	
+	@Autowired
+	private IZhongzHouseService zhongzHouseService;
+	
+	@RequiresPermissions("system:zhongzHouse:view")
+	@GetMapping()
+	public String zhongzHouse()
+	{
+	    return prefix + "/zhongzHouse";
+	}
+	
+	/**
+	 * 查询房屋列表
+	 */
+	@RequiresPermissions("system:zhongzHouse:list")
+	@PostMapping("/list")
+	@ResponseBody
+	public TableDataInfo list(ZhongzHouse zhongzHouse)
+	{
+		startPage();
+        List<ZhongzHouse> list = zhongzHouseService.selectZhongzHouseList(zhongzHouse);
+		return getDataTable(list);
+	}
+	
+	
+	/**
+	 * 导出房屋列表
+	 */
+	@RequiresPermissions("system:zhongzHouse:export")
+    @PostMapping("/export")
+    @ResponseBody
+    public AjaxResult export(ZhongzHouse zhongzHouse)
+    {
+    	List<ZhongzHouse> list = zhongzHouseService.selectZhongzHouseList(zhongzHouse);
+        ExcelUtil<ZhongzHouse> util = new ExcelUtil<ZhongzHouse>(ZhongzHouse.class);
+        return util.exportExcel(list, "zhongzHouse");
+    }
+	
+	/**
+	 * 新增房屋
+	 */
+	@GetMapping("/add")
+	public String add()
+	{
+	    return prefix + "/add";
+	}
+	
+	/**
+	 * 新增保存房屋
+	 */
+	@RequiresPermissions("system:zhongzHouse:add")
+	@Log(title = "房屋", businessType = BusinessType.INSERT)
+	@PostMapping("/add")
+	@ResponseBody
+	public AjaxResult addSave(ZhongzHouse zhongzHouse)
+	{		
+		return toAjax(zhongzHouseService.insertZhongzHouse(zhongzHouse));
+	}
+
+	/**
+	 * 修改房屋
+	 */
+	@GetMapping("/edit/{id}")
+	public String edit(@PathVariable("id") String id, ModelMap mmap)
+	{
+		ZhongzHouse zhongzHouse = zhongzHouseService.selectZhongzHouseById(id);
+		mmap.put("zhongzHouse", zhongzHouse);
+	    return prefix + "/edit";
+	}
+	
+	/**
+	 * 修改保存房屋
+	 */
+	@RequiresPermissions("system:zhongzHouse:edit")
+	@Log(title = "房屋", businessType = BusinessType.UPDATE)
+	@PostMapping("/edit")
+	@ResponseBody
+	public AjaxResult editSave(ZhongzHouse zhongzHouse)
+	{		
+		return toAjax(zhongzHouseService.updateZhongzHouse(zhongzHouse));
+	}
+	
+	/**
+	 * 删除房屋
+	 */
+	@RequiresPermissions("system:zhongzHouse:remove")
+	@Log(title = "房屋", businessType = BusinessType.DELETE)
+	@PostMapping( "/remove")
+	@ResponseBody
+	public AjaxResult remove(String ids)
+	{		
+		return toAjax(zhongzHouseService.deleteZhongzHouseByIds(ids));
+	}
+	
+}

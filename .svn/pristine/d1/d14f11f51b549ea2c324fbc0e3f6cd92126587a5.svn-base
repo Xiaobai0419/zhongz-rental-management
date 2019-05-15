@@ -1,0 +1,394 @@
+<!DOCTYPE HTML>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+    
+     <div class="container-div">
+		<div class="row">
+			<div class="col-sm-12 search-collapse">
+				<form id="formId">
+					<div class="select-list">
+						<ul>
+							<li>
+								订单类型：<input type="text" name="orderType"/>
+							</li>
+
+							<li>
+								订单号：<input type="text" name="orderId"/>
+							</li>
+
+							<li>
+								订单状态：<input type="text" name="orderStatus"/>
+							</li>
+
+							<li>
+								预约时间：<input type="text" name="orderTime"/>
+							</li>
+
+							<li>
+								租住房屋id：<input type="text" name="contract.houseId"/>
+							</li>
+
+							<li>
+								承租人id：<input type="text" name="contract.tenantId"/>
+							</li>
+
+							<li>
+								委托代理人id：<input type="text" name="contract.entrustedAgentId"/>
+							</li>
+
+							<li>
+								受理人id：<input type="text" name="contract.renterId"/>
+							</li>
+
+							<li>
+								受理时间：<input type="text" name="contract.acceptTime"/>
+							</li>
+
+							<li>
+								受理状态：<input type="text" name="contract.acceptStatus"/>
+							</li>
+
+							<li>
+								受理性质：<input type="text" name="contract.acceptType"/>
+							</li>
+
+							<li>
+								缴费状态：<input type="text" name="contract.payed"/>
+							</li>
+
+							<li>
+								合同编号：<input type="text" name="contract.contractId"/>
+							</li>
+
+							<li>
+								合同状态：<input type="text" name="contract.contractStatus"/>
+							</li>
+
+							<li>
+								起租日期：<input type="text" name="contract.rentStartTime"/>
+							</li>
+
+							<li>
+								止租日期：<input type="text" name="contract.rentEndTime"/>
+							</li>
+
+							<li>
+								签约日期：<input type="text" name="contract.signedTime"/>
+							</li>
+
+							<li>
+								续费日期：<input type="text" name="contract.continuationTime"/>
+							</li>
+
+							<li>
+								续费周期：<input type="text" name="contract.continuationPeriod"/>
+							</li>
+
+							<li>
+								月租金：<input type="text" name="contract.monthlyRent"/>
+							</li>
+
+							<li>
+								押金标准：<input type="text" name="contract.pledgeMonth"/>
+							</li>
+
+							<li>
+								每平米供暖费：<input type="text" name="contract.heatingPerSquare"/>
+							</li>
+
+							<li>
+								每平米物业费：<input type="text" name="contract.managementPerSquare"/>
+							</li>
+
+							<li>
+								计费面积：<input type="text" name="contract.area"/>
+							</li>
+
+							<li>
+								水表值：<input type="text" name="contract.waterWatch"/>
+							</li>
+
+							<li>
+								电表值：<input type="text" name="contract.electricWatch"/>
+							</li>
+
+							<li>
+								燃气表值：<input type="text" name="contract.gasWatch"/>
+							</li>
+
+							<li>
+								欠款：<input type="text" name="contract.debt"/>
+							</li>
+
+							<li>
+								租金总计：<input type="text" name="contract.rentTotal"/>
+							</li>
+
+							<li>
+								支付方式：<input type="text" name="contract.payPeriod"/>
+							</li>
+
+							<li>
+								付款方式：<input type="text" name="contract.payType"/>
+							</li>
+
+							<li>
+								邀请码：<input type="text" name="contract.invitationCode"/>
+							</li>
+
+							<li>
+								优惠券：<input type="text" name="contract.coupon"/>
+							</li>
+
+							<li>
+								优惠说明：<input type="text" name="contract.couponComment"/>
+							</li>
+
+							<li>
+								更新时间：<input type="text" name="updateTime"/>
+							</li>
+
+							<li>
+								<a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+								<a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+							</li>
+						</ul>
+					</div>
+				</form>
+			</div>
+			
+	        <div class="btn-group-sm" id="toolbar" role="group">
+				<a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="system:zhongzOrder:add">
+					<i class="fa fa-plus"></i> 添加
+				</a>
+				<a class="btn btn-primary btn-edit disabled" onclick="$.operate.edit()" shiro:hasPermission="system:zhongzOrder:edit">
+					<i class="fa fa-edit"></i> 修改
+				</a>
+				<a class="btn btn-danger btn-del btn-del disabled" onclick="$.operate.removeAll()" shiro:hasPermission="system:zhongzOrder:remove">
+					<i class="fa fa-remove"></i> 删除
+				</a>
+				<a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="system:zhongzOrder:export">
+						<i class="fa fa-download"></i> 导出
+				 </a>
+			</div>
+			<div class="col-sm-12 select-table table-striped">
+				<table id="bootstrap-table" data-mobile-responsive="true"></table>
+			</div>
+		</div>
+	</div>
+    <div th:include="include :: footer"></div>
+    <script th:inline="javascript">
+        var editFlag = [[${@permission.hasPermi('system:zhongzOrder:edit')}]];
+        var removeFlag = [[${@permission.hasPermi('system:zhongzOrder:remove')}]];
+        var prefix = ctx + "system/zhongzOrder";
+
+        $(function() {
+            var options = {
+                url: prefix + "/list",
+                createUrl: prefix + "/add",
+                updateUrl: prefix + "/edit/{id}",
+                removeUrl: prefix + "/remove",
+				exportUrl: prefix + "/export",
+                modalName: "订单",
+		        showExport: true,
+                columns: [{
+		            checkbox: true
+		        },
+				{
+					field : 'id',
+					title : '主键',
+					visible: false
+				},
+				{
+					field : 'orderType', 
+					title : '订单类型',
+					sortable: true
+				},
+				{
+					field : 'orderId', 
+					title : '订单号',
+					sortable: true
+				},
+				{
+					field : 'orderStatus', 
+					title : '订单状态',
+					sortable: true
+				},
+				{
+					field : 'orderTime', 
+					title : '预约时间',
+					sortable: true
+				},
+				{
+					field : 'contract.houseId',
+					title : '租住房屋id',
+					sortable: true
+				},
+				{
+					field : 'contract.tenantId',
+					title : '承租人id',
+					sortable: true
+				},
+				{
+					field : 'contract.entrustedAgentId',
+					title : '委托代理人id',
+					sortable: true
+				},
+				{
+					field : 'contract.renterId',
+					title : '受理人id',
+					sortable: true
+				},
+				{
+					field : 'contract.acceptTime',
+					title : '受理时间',
+					sortable: true
+				},
+				{
+					field : 'contract.acceptStatus',
+					title : '受理状态',
+					sortable: true
+				},
+				{
+					field : 'contract.acceptType',
+					title : '受理性质',
+					sortable: true
+				},
+				{
+					field : 'contract.payed',
+					title : '缴费状态',
+					sortable: true
+				},
+				{
+					field : 'contract.contractId',
+					title : '合同编号',
+					sortable: true
+				},
+				{
+					field : 'contract.contractStatus',
+					title : '合同状态',
+					sortable: true
+				},
+				{
+					field : 'contract.rentStartTime',
+					title : '起租日期',
+					sortable: true
+				},
+				{
+					field : 'contract.rentEndTime',
+					title : '止租日期',
+					sortable: true
+				},
+				{
+					field : 'contract.signedTime',
+					title : '签约日期',
+					sortable: true
+				},
+				{
+					field : 'contract.continuationTime',
+					title : '续费日期',
+					sortable: true
+				},
+				{
+					field : 'contract.continuationPeriod',
+					title : '续费周期',
+					sortable: true
+				},
+				{
+					field : 'contract.monthlyRent',
+					title : '月租金',
+					sortable: true
+				},
+				{
+					field : 'contract.pledgeMonth',
+					title : '押金标准',
+					sortable: true
+				},
+				{
+					field : 'contract.heatingPerSquare',
+					title : '每平米供暖费',
+					sortable: true
+				},
+				{
+					field : 'contract.managementPerSquare',
+					title : '每平米物业费',
+					sortable: true
+				},
+				{
+					field : 'contract.area',
+					title : '计费面积',
+					sortable: true
+				},
+				{
+					field : 'contract.waterWatch',
+					title : '水表值',
+					sortable: true
+				},
+				{
+					field : 'contract.electricWatch',
+					title : '电表值',
+					sortable: true
+				},
+				{
+					field : 'contract.gasWatch',
+					title : '燃气表值',
+					sortable: true
+				},
+				{
+					field : 'contract.debt',
+					title : '欠款',
+					sortable: true
+				},
+				{
+					field : 'contract.rentTotal',
+					title : '租金总计',
+					sortable: true
+				},
+				{
+					field : 'contract.payPeriod',
+					title : '支付方式',
+					sortable: true
+				},
+				{
+					field : 'contract.payType',
+					title : '付款方式',
+					sortable: true
+				},
+				{
+					field : 'contract.invitationCode',
+					title : '邀请码',
+					sortable: true
+				},
+				{
+					field : 'contract.coupon',
+					title : '优惠券',
+					sortable: true
+				},
+				{
+					field : 'contract.couponComment',
+					title : '优惠说明',
+					sortable: true
+				},
+				{
+					field : 'updateTime', 
+					title : '更新时间',
+					sortable: true
+				},
+		        {
+		            title: '操作',
+		            align: 'center',
+		            formatter: function(value, row, index) {
+		            	var actions = [];
+		            	actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="#" onclick="$.operate.edit(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                        actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="#" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
+						return actions.join('');
+		            }
+		        }]
+            };
+            $.table.init(options);
+        });
+    </script>
+</body>
+</html>

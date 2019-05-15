@@ -1,0 +1,86 @@
+package com.zhongz.service.impl;
+
+import java.util.List;
+
+import com.zhongz.domain.ZhongzContract;
+import com.zhongz.mapper.ZhongzContractMapper;
+import com.zhongz.service.IZhongzContractService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.ruoyi.common.core.text.Convert;
+
+/**
+ * 合同 服务层实现
+ * 
+ * @author ruoyi
+ * @date 2019-04-04
+ */
+@Service
+public class ZhongzContractServiceImpl implements IZhongzContractService
+{
+	@Autowired
+	private ZhongzContractMapper zhongzContractMapper;
+
+	/**
+     * 查询合同信息
+     * 
+     * @param id 合同ID
+     * @return 合同信息
+     */
+    @Override
+	public ZhongzContract selectZhongzContractById(String id)
+	{
+	    return zhongzContractMapper.selectZhongzContractById(id);
+	}
+	
+	/**
+     * 查询合同列表
+     * 
+     * @param zhongzContract 合同信息
+     * @return 合同集合
+     */
+	@Override
+	public List<ZhongzContract> selectZhongzContractList(ZhongzContract zhongzContract)
+	{
+	    return zhongzContractMapper.selectZhongzContractList(zhongzContract);
+	}
+	
+    /**
+     * 新增合同
+     * 
+     * @param zhongzContract 合同信息
+     * @return 结果
+     */
+	@Override
+	public int insertZhongzContract(ZhongzContract zhongzContract)
+	{
+		zhongzContract.preInsert();
+	    return zhongzContractMapper.insertZhongzContract(zhongzContract);
+	}
+	
+	/**
+     * 修改合同
+     * 
+     * @param zhongzContract 合同信息
+     * @return 结果
+     */
+	@Override
+	public int updateZhongzContract(ZhongzContract zhongzContract)
+	{
+		zhongzContract.preUpdate();
+	    return zhongzContractMapper.updateZhongzContract(zhongzContract);
+	}
+
+	/**
+     * 删除合同对象（逻辑）
+     * 
+     * @param ids 需要删除的数据ID
+     * @return 结果
+     */
+	@Override
+	public int deleteZhongzContractByIds(String ids)
+	{
+		return zhongzContractMapper.deleteZhongzContractByIds1(Convert.toStrArray(ids));
+	}
+	
+}

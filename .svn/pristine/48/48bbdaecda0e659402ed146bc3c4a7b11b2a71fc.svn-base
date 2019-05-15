@@ -1,0 +1,108 @@
+package com.zhongz.domain;
+
+import com.ruoyi.common.annotation.Excel;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+import com.ruoyi.common.core.domain.BaseEntity;
+import java.util.Date;
+
+/**
+ * 订单表 zhongz_order
+ * 
+ * @author ruoyi
+ * @date 2019-04-04
+ */
+public class ZhongzOrder extends BaseEntity
+{
+	private static final long serialVersionUID = 1L;
+
+	/** 订单类型 */
+	@Excel(name = "订单类型")
+	private Integer orderType;
+	/** 订单号 */
+	@Excel(name = "订单号")
+	private String orderId;
+	/** 订单状态 */
+	@Excel(name = "订单状态")
+	private Integer orderStatus;
+	/** 预约时间 */
+	@Excel(name = "预约时间")
+	private Date orderTime;
+	/** 合同编号 */
+	@Excel(name = "合同编号")
+	private String contractId;
+
+	private ZhongzContract contract;
+
+	public ZhongzContract getContract() {
+		return contract;
+	}
+
+	public void setContract(ZhongzContract contract) {
+		this.contract = contract;
+	}
+
+	public void setOrderType(Integer orderType)
+	{
+		this.orderType = orderType;
+	}
+
+	public Integer getOrderType() 
+	{
+		return orderType;
+	}
+	public void setOrderId(String orderId) 
+	{
+		this.orderId = orderId;
+	}
+
+	public String getOrderId() 
+	{
+		return orderId;
+	}
+	public void setOrderStatus(Integer orderStatus) 
+	{
+		this.orderStatus = orderStatus;
+	}
+
+	public Integer getOrderStatus() 
+	{
+		return orderStatus;
+	}
+	public void setOrderTime(Date orderTime) 
+	{
+		this.orderTime = orderTime;
+	}
+
+	public Date getOrderTime() 
+	{
+		return orderTime;
+	}
+	public void setContractId(String contractId) 
+	{
+		this.contractId = contractId;
+	}
+
+	public String getContractId() 
+	{
+		return contractId;
+	}
+
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
+				.append("id", getId())
+				.append("orderType", getOrderType())
+				.append("orderId", getOrderId())
+				.append("orderStatus", getOrderStatus())
+				.append("orderTime", getOrderTime())
+				.append("contractId", getContractId())
+				.append("createBy", getCreateBy())
+				.append("createTime", getCreateTime())
+				.append("updateBy", getUpdateBy())
+				.append("updateTime", getUpdateTime())
+				.append("remark", getRemark())
+				.append("status1", getStatus1())
+				.toString();
+	}
+}

@@ -1,0 +1,223 @@
+<!DOCTYPE HTML>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+    
+     <div class="container-div">
+		<div class="row">
+			<div class="col-sm-12 search-collapse">
+				<form id="formId">
+					<div class="select-list">
+						<ul>
+							<li>
+								用户昵称：<input type="text" name="nickName"/>
+							</li>
+
+							<li>
+								联系电话：<input type="text" name="mobile"/>
+							</li>
+
+							<li>
+								微信登录id：<input type="text" name="unionId"/>
+							</li>
+
+							<li>
+								头像url：<input type="text" name="headPortrait"/>
+							</li>
+
+							<li>
+								性别：<input type="text" name="gender"/>
+							</li>
+
+							<li>
+								用户类型：<input type="text" name="userType"/>
+							</li>
+
+							<li>
+								邀请码：<input type="text" name="invitationCode"/>
+							</li>
+
+							<li>
+								我的邀请人id：<input type="text" name="invitorId"/>
+							</li>
+
+							<li>
+								注册时间：<input type="text" name="registerTime"/>
+							</li>
+
+							<li>
+								最后一次登录时间：<input type="text" name="lastLoginTime"/>
+							</li>
+
+							<li>
+								创建者：<input type="text" name="createBy"/>
+							</li>
+
+							<li>
+								创建时间：<input type="text" name="createTime"/>
+							</li>
+
+							<li>
+								更新者：<input type="text" name="updateBy"/>
+							</li>
+
+							<li>
+								更新时间：<input type="text" name="updateTime"/>
+							</li>
+
+							<li>
+								备注：<input type="text" name="remark"/>
+							</li>
+
+							<li>
+								状态（0正常 1删除 2停用）：<input type="text" name="status1"/>
+							</li>
+
+							<li>
+								<a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+								<a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+							</li>
+						</ul>
+					</div>
+				</form>
+			</div>
+			
+	        <div class="btn-group-sm" id="toolbar" role="group">
+				<a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="system:zhongzUser:add">
+					<i class="fa fa-plus"></i> 添加
+				</a>
+				<a class="btn btn-primary btn-edit disabled" onclick="$.operate.edit()" shiro:hasPermission="system:zhongzUser:edit">
+					<i class="fa fa-edit"></i> 修改
+				</a>
+				<a class="btn btn-danger btn-del btn-del disabled" onclick="$.operate.removeAll()" shiro:hasPermission="system:zhongzUser:remove">
+					<i class="fa fa-remove"></i> 删除
+				</a>
+				<a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="system:zhongzUser:export">
+						<i class="fa fa-download"></i> 导出
+				 </a>
+			</div>
+			<div class="col-sm-12 select-table table-striped">
+				<table id="bootstrap-table" data-mobile-responsive="true"></table>
+			</div>
+		</div>
+	</div>
+    <div th:include="include :: footer"></div>
+    <script th:inline="javascript">
+        var editFlag = [[${@permission.hasPermi('system:zhongzUser:edit')}]];
+        var removeFlag = [[${@permission.hasPermi('system:zhongzUser:remove')}]];
+        var prefix = ctx + "system/zhongzUser";
+
+        $(function() {
+            var options = {
+                url: prefix + "/list",
+                createUrl: prefix + "/add",
+                updateUrl: prefix + "/edit/{id}",
+                removeUrl: prefix + "/remove",
+				exportUrl: prefix + "/export",
+                modalName: "用户",
+		        showExport: true,
+                columns: [{
+		            checkbox: true
+		        },
+				{
+					field : 'id', 
+					title : '主键',
+					visible: false
+				},
+				{
+					field : 'nickName', 
+					title : '用户昵称',
+					sortable: true
+				},
+				{
+					field : 'mobile', 
+					title : '联系电话',
+					sortable: true
+				},
+				{
+					field : 'unionId', 
+					title : '微信登录id',
+					sortable: true
+				},
+				{
+					field : 'headPortrait', 
+					title : '头像url',
+					sortable: true
+				},
+				{
+					field : 'gender', 
+					title : '性别',
+					sortable: true
+				},
+				{
+					field : 'userType', 
+					title : '用户类型',
+					sortable: true
+				},
+				{
+					field : 'invitationCode', 
+					title : '邀请码',
+					sortable: true
+				},
+				{
+					field : 'invitorId', 
+					title : '我的邀请人id',
+					sortable: true
+				},
+				{
+					field : 'registerTime', 
+					title : '注册时间',
+					sortable: true
+				},
+				{
+					field : 'lastLoginTime', 
+					title : '最后一次登录时间',
+					sortable: true
+				},
+				{
+					field : 'createBy', 
+					title : '创建者',
+					sortable: true
+				},
+				{
+					field : 'createTime', 
+					title : '创建时间',
+					sortable: true
+				},
+				{
+					field : 'updateBy', 
+					title : '更新者',
+					sortable: true
+				},
+				{
+					field : 'updateTime', 
+					title : '更新时间',
+					sortable: true
+				},
+				{
+					field : 'remark', 
+					title : '备注',
+					sortable: true
+				},
+				{
+					field : 'status1', 
+					title : '状态（0正常 1删除 2停用）',
+					sortable: true
+				},
+		        {
+		            title: '操作',
+		            align: 'center',
+		            formatter: function(value, row, index) {
+		            	var actions = [];
+		            	actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="#" onclick="$.operate.edit(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                        actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="#" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
+						return actions.join('');
+		            }
+		        }]
+            };
+            $.table.init(options);
+        });
+    </script>
+</body>
+</html>

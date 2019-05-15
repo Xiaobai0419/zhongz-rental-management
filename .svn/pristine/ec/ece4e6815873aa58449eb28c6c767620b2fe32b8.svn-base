@@ -1,0 +1,55 @@
+package com.zhongz.service;
+
+import com.zhongz.domain.ZhongzUser;
+
+import java.util.List;
+
+/**
+ * 用户 服务层
+ * 
+ * @author ruoyi
+ * @date 2019-04-04
+ */
+public interface IZhongzUserService 
+{
+	/**
+     * 查询用户信息
+     * 
+     * @param id 用户ID
+     * @return 用户信息
+     */
+	public ZhongzUser selectZhongzUserById(String id);
+	
+	/**
+     * 查询用户列表
+     * 
+     * @param zhongzUser 用户信息
+     * @return 用户集合
+     */
+	public List<ZhongzUser> selectZhongzUserList(ZhongzUser zhongzUser);
+	
+	/**
+     * 新增用户
+     * 
+     * @param zhongzUser 用户信息
+     * @return 结果
+     */
+	public int insertZhongzUser(ZhongzUser zhongzUser);
+	
+	/**
+     * 修改用户
+     * 
+     * @param zhongzUser 用户信息
+     * @return 结果
+     */
+	public int updateZhongzUser(ZhongzUser zhongzUser);
+		
+	/**
+     * 删除用户信息
+     * 
+     * @param ids 需要删除的数据ID
+     * @return 结果
+     */
+	public int deleteZhongzUserByIds(String ids);
+	
+}

@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhongz.mapper.ZhongzContractMapper">
+    
+    <resultMap type="ZhongzContract" id="ZhongzContractResult">
+        <result property="id"    column="id"    />
+        <result property="type"    column="type"    />
+        <result property="rentType"    column="rent_type"    />
+        <result property="houseId"    column="house_id"    />
+        <result property="roomId"    column="room_id"    />
+        <result property="tenantId"    column="tenant_id"    />
+        <result property="entrustedAgentId"    column="entrusted_agent_id"    />
+        <result property="renterId"    column="renter_id"    />
+        <result property="acceptTime"    column="accept_time"    />
+        <result property="acceptStatus"    column="accept_status"    />
+        <result property="acceptType"    column="accept_type"    />
+        <result property="payed"    column="payed"    />
+        <result property="contractId"    column="contract_id"    />
+        <result property="contractStatus"    column="contract_status"    />
+        <result property="rentStartTime"    column="rent_start_time"    />
+        <result property="rentEndTime"    column="rent_end_time"    />
+        <result property="signedTime"    column="signed_time"    />
+        <result property="continuationTime"    column="continuation_time"    />
+        <result property="continuationPeriod"    column="continuation_period"    />
+        <result property="monthlyRent"    column="monthly_rent"    />
+        <result property="pledgeMonth"    column="pledge_month"    />
+        <result property="heatingPerSquare"    column="heating_per_square"    />
+        <result property="managementPerSquare"    column="management_per_square"    />
+        <result property="area"    column="area"    />
+        <result property="waterWatch"    column="water_watch"    />
+        <result property="electricWatch"    column="electric_watch"    />
+        <result property="gasWatch"    column="gas_watch"    />
+        <result property="debt"    column="debt"    />
+        <result property="rentTotal"    column="rent_total"    />
+        <result property="payPeriod"    column="pay_period"    />
+        <result property="payType"    column="pay_type"    />
+        <result property="invitationCode"    column="invitation_code"    />
+        <result property="coupon"    column="coupon"    />
+        <result property="couponComment"    column="coupon_comment"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="remark"    column="remark"    />
+        <result property="status1"    column="status1"    />
+    </resultMap>
+	
+	<sql id="selectZhongzContractVo">
+        select id, type, rent_type, house_id, room_id, tenant_id, entrusted_agent_id, renter_id, accept_time, accept_status, accept_type, payed, contract_id, contract_status, rent_start_time, rent_end_time, signed_time, continuation_time, continuation_period, monthly_rent, pledge_month, heating_per_square, management_per_square, area, water_watch, electric_watch, gas_watch, debt, rent_total, pay_period, pay_type, invitation_code, coupon, coupon_comment, create_by, create_time, update_by, update_time, remark, status1 from zhongz_contract
+    </sql>
+	
+    <select id="selectZhongzContractList" parameterType="ZhongzContract" resultMap="ZhongzContractResult">
+        <include refid="selectZhongzContractVo"/>
+        <where>
+            status1 = '0'
+            <if test="id != null  and id != '' "> and id = #{id}</if>
+             <if test="type != null  and type != '' "> and type = #{type}</if>
+             <if test="rentType != null "> and rent_type = #{rentType}</if>
+             <if test="houseId != null  and houseId != '' "> and house_id = #{houseId}</if>
+             <if test="roomId != null  and roomId != '' "> and room_id = #{roomId}</if>
+             <if test="tenantId != null  and tenantId != '' "> and tenant_id = #{tenantId}</if>
+             <if test="entrustedAgentId != null  and entrustedAgentId != '' "> and entrusted_agent_id = #{entrustedAgentId}</if>
+             <if test="renterId != null  and renterId != '' "> and renter_id = #{renterId}</if>
+             <if test="acceptTime != null "> and accept_time = #{acceptTime}</if>
+             <if test="acceptStatus != null "> and accept_status = #{acceptStatus}</if>
+             <if test="acceptType != null "> and accept_type = #{acceptType}</if>
+             <if test="payed != null "> and payed = #{payed}</if>
+             <if test="contractId != null  and contractId != '' "> and contract_id = #{contractId}</if>
+             <if test="contractStatus != null "> and contract_status = #{contractStatus}</if>
+             <if test="rentStartTime != null "> and rent_start_time = #{rentStartTime}</if>
+             <if test="rentEndTime != null "> and rent_end_time = #{rentEndTime}</if>
+             <if test="signedTime != null "> and signed_time = #{signedTime}</if>
+             <if test="continuationTime != null "> and continuation_time = #{continuationTime}</if>
+             <if test="continuationPeriod != null "> and continuation_period = #{continuationPeriod}</if>
+             <if test="monthlyRent != null "> and monthly_rent = #{monthlyRent}</if>
+             <if test="pledgeMonth != null "> and pledge_month = #{pledgeMonth}</if>
+             <if test="heatingPerSquare != null "> and heating_per_square = #{heatingPerSquare}</if>
+             <if test="managementPerSquare != null "> and management_per_square = #{managementPerSquare}</if>
+             <if test="area != null "> and area = #{area}</if>
+             <if test="waterWatch != null "> and water_watch = #{waterWatch}</if>
+             <if test="electricWatch != null "> and electric_watch = #{electricWatch}</if>
+             <if test="gasWatch != null "> and gas_watch = #{gasWatch}</if>
+             <if test="debt != null "> and debt = #{debt}</if>
+             <if test="rentTotal != null "> and rent_total = #{rentTotal}</if>
+             <if test="payPeriod != null "> and pay_period = #{payPeriod}</if>
+             <if test="payType != null "> and pay_type = #{payType}</if>
+             <if test="invitationCode != null  and invitationCode != '' "> and invitation_code = #{invitationCode}</if>
+             <if test="coupon != null  and coupon != '' "> and coupon = #{coupon}</if>
+             <if test="couponComment != null  and couponComment != '' "> and coupon_comment = #{couponComment}</if>
+             <if test="createBy != null  and createBy != '' "> and create_by = #{createBy}</if>
+             <if test="createTime != null "> and create_time = #{createTime}</if>
+             <if test="updateBy != null  and updateBy != '' "> and update_by = #{updateBy}</if>
+             <if test="updateTime != null "> and update_time = #{updateTime}</if>
+             <if test="remark != null  and remark != '' "> and remark = #{remark}</if>
+         </where>
+    </select>
+    
+    <select id="selectZhongzContractById" parameterType="String" resultMap="ZhongzContractResult">
+        <include refid="selectZhongzContractVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertZhongzContract" parameterType="ZhongzContract">
+        insert into zhongz_contract
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null  and id != ''  ">id,</if>
+			<if test="type != null  and type != ''  ">type,</if>
+			<if test="rentType != null  ">rent_type,</if>
+			<if test="houseId != null  and houseId != ''  ">house_id,</if>
+			<if test="roomId != null  and roomId != ''  ">room_id,</if>
+			<if test="tenantId != null  and tenantId != ''  ">tenant_id,</if>
+			<if test="entrustedAgentId != null  and entrustedAgentId != ''  ">entrusted_agent_id,</if>
+			<if test="renterId != null  and renterId != ''  ">renter_id,</if>
+			<if test="acceptTime != null  ">accept_time,</if>
+			<if test="acceptStatus != null  ">accept_status,</if>
+			<if test="acceptType != null  ">accept_type,</if>
+			<if test="payed != null  ">payed,</if>
+			<if test="contractId != null  and contractId != ''  ">contract_id,</if>
+			<if test="contractStatus != null  ">contract_status,</if>
+			<if test="rentStartTime != null  ">rent_start_time,</if>
+			<if test="rentEndTime != null  ">rent_end_time,</if>
+			<if test="signedTime != null  ">signed_time,</if>
+			<if test="continuationTime != null  ">continuation_time,</if>
+			<if test="continuationPeriod != null  ">continuation_period,</if>
+			<if test="monthlyRent != null  ">monthly_rent,</if>
+			<if test="pledgeMonth != null  ">pledge_month,</if>
+			<if test="heatingPerSquare != null  ">heating_per_square,</if>
+			<if test="managementPerSquare != null  ">management_per_square,</if>
+			<if test="area != null  ">area,</if>
+			<if test="waterWatch != null  ">water_watch,</if>
+			<if test="electricWatch != null  ">electric_watch,</if>
+			<if test="gasWatch != null  ">gas_watch,</if>
+			<if test="debt != null  ">debt,</if>
+			<if test="rentTotal != null  ">rent_total,</if>
+			<if test="payPeriod != null  ">pay_period,</if>
+			<if test="payType != null  ">pay_type,</if>
+			<if test="invitationCode != null  and invitationCode != ''  ">invitation_code,</if>
+			<if test="coupon != null  and coupon != ''  ">coupon,</if>
+			<if test="couponComment != null  and couponComment != ''  ">coupon_comment,</if>
+			<if test="createBy != null  and createBy != ''  ">create_by,</if>
+			<if test="createTime != null  ">create_time,</if>
+			<if test="updateBy != null  and updateBy != ''  ">update_by,</if>
+			<if test="updateTime != null  ">update_time,</if>
+			<if test="remark != null  and remark != ''  ">remark,</if>
+			<if test="status1 != null  and status1 != ''  ">status1,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null  and id != ''  ">#{id},</if>
+			<if test="type != null  and type != ''  ">#{type},</if>
+			<if test="rentType != null  ">#{rentType},</if>
+			<if test="houseId != null  and houseId != ''  ">#{houseId},</if>
+			<if test="roomId != null  and roomId != ''  ">#{roomId},</if>
+			<if test="tenantId != null  and tenantId != ''  ">#{tenantId},</if>
+			<if test="entrustedAgentId != null  and entrustedAgentId != ''  ">#{entrustedAgentId},</if>
+			<if test="renterId != null  and renterId != ''  ">#{renterId},</if>
+			<if test="acceptTime != null  ">#{acceptTime},</if>
+			<if test="acceptStatus != null  ">#{acceptStatus},</if>
+			<if test="acceptType != null  ">#{acceptType},</if>
+			<if test="payed != null  ">#{payed},</if>
+			<if test="contractId != null  and contractId != ''  ">#{contractId},</if>
+			<if test="contractStatus != null  ">#{contractStatus},</if>
+			<if test="rentStartTime != null  ">#{rentStartTime},</if>
+			<if test="rentEndTime != null  ">#{rentEndTime},</if>
+			<if test="signedTime != null  ">#{signedTime},</if>
+			<if test="continuationTime != null  ">#{continuationTime},</if>
+			<if test="continuationPeriod != null  ">#{continuationPeriod},</if>
+			<if test="monthlyRent != null  ">#{monthlyRent},</if>
+			<if test="pledgeMonth != null  ">#{pledgeMonth},</if>
+			<if test="heatingPerSquare != null  ">#{heatingPerSquare},</if>
+			<if test="managementPerSquare != null  ">#{managementPerSquare},</if>
+			<if test="area != null  ">#{area},</if>
+			<if test="waterWatch != null  ">#{waterWatch},</if>
+			<if test="electricWatch != null  ">#{electricWatch},</if>
+			<if test="gasWatch != null  ">#{gasWatch},</if>
+			<if test="debt != null  ">#{debt},</if>
+			<if test="rentTotal != null  ">#{rentTotal},</if>
+			<if test="payPeriod != null  ">#{payPeriod},</if>
+			<if test="payType != null  ">#{payType},</if>
+			<if test="invitationCode != null  and invitationCode != ''  ">#{invitationCode},</if>
+			<if test="coupon != null  and coupon != ''  ">#{coupon},</if>
+			<if test="couponComment != null  and couponComment != ''  ">#{couponComment},</if>
+			<if test="createBy != null  and createBy != ''  ">#{createBy},</if>
+			<if test="createTime != null  ">#{createTime},</if>
+			<if test="updateBy != null  and updateBy != ''  ">#{updateBy},</if>
+			<if test="updateTime != null  ">#{updateTime},</if>
+			<if test="remark != null  and remark != ''  ">#{remark},</if>
+			<if test="status1 != null  and status1 != ''  ">#{status1},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateZhongzContract" parameterType="ZhongzContract">
+        update zhongz_contract
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="type != null  and type != ''  ">type = #{type},</if>
+            <if test="rentType != null  ">rent_type = #{rentType},</if>
+            <if test="houseId != null  and houseId != ''  ">house_id = #{houseId},</if>
+            <if test="roomId != null  and roomId != ''  ">room_id = #{roomId},</if>
+            <if test="tenantId != null  and tenantId != ''  ">tenant_id = #{tenantId},</if>
+            <if test="entrustedAgentId != null  and entrustedAgentId != ''  ">entrusted_agent_id = #{entrustedAgentId},</if>
+            <if test="renterId != null  and renterId != ''  ">renter_id = #{renterId},</if>
+            <if test="acceptTime != null  ">accept_time = #{acceptTime},</if>
+            <if test="acceptStatus != null  ">accept_status = #{acceptStatus},</if>
+            <if test="acceptType != null  ">accept_type = #{acceptType},</if>
+            <if test="payed != null  ">payed = #{payed},</if>
+            <if test="contractId != null  and contractId != ''  ">contract_id = #{contractId},</if>
+            <if test="contractStatus != null  ">contract_status = #{contractStatus},</if>
+            <if test="rentStartTime != null  ">rent_start_time = #{rentStartTime},</if>
+            <if test="rentEndTime != null  ">rent_end_time = #{rentEndTime},</if>
+            <if test="signedTime != null  ">signed_time = #{signedTime},</if>
+            <if test="continuationTime != null  ">continuation_time = #{continuationTime},</if>
+            <if test="continuationPeriod != null  ">continuation_period = #{continuationPeriod},</if>
+            <if test="monthlyRent != null  ">monthly_rent = #{monthlyRent},</if>
+            <if test="pledgeMonth != null  ">pledge_month = #{pledgeMonth},</if>
+            <if test="heatingPerSquare != null  ">heating_per_square = #{heatingPerSquare},</if>
+            <if test="managementPerSquare != null  ">management_per_square = #{managementPerSquare},</if>
+            <if test="area != null  ">area = #{area},</if>
+            <if test="waterWatch != null  ">water_watch = #{waterWatch},</if>
+            <if test="electricWatch != null  ">electric_watch = #{electricWatch},</if>
+            <if test="gasWatch != null  ">gas_watch = #{gasWatch},</if>
+            <if test="debt != null  ">debt = #{debt},</if>
+            <if test="rentTotal != null  ">rent_total = #{rentTotal},</if>
+            <if test="payPeriod != null  ">pay_period = #{payPeriod},</if>
+            <if test="payType != null  ">pay_type = #{payType},</if>
+            <if test="invitationCode != null  and invitationCode != ''  ">invitation_code = #{invitationCode},</if>
+            <if test="coupon != null  and coupon != ''  ">coupon = #{coupon},</if>
+            <if test="couponComment != null  and couponComment != ''  ">coupon_comment = #{couponComment},</if>
+            <if test="createBy != null  and createBy != ''  ">create_by = #{createBy},</if>
+            <if test="createTime != null  ">create_time = #{createTime},</if>
+            <if test="updateBy != null  and updateBy != ''  ">update_by = #{updateBy},</if>
+            <if test="updateTime != null  ">update_time = #{updateTime},</if>
+            <if test="remark != null  and remark != ''  ">remark = #{remark},</if>
+            <if test="status1 != null  and status1 != ''  ">status1 = #{status1},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <update id="deleteZhongzContractById1" parameterType="String">
+        update zhongz_contract set status1 = '1' where id = #{id}
+    </update>
+
+    <update id="deleteZhongzContractByIds1" parameterType="String">
+        update zhongz_contract set status1 = '1' where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+	<delete id="deleteZhongzContractById" parameterType="String">
+        delete from zhongz_contract where id = #{id}
+    </delete>
+	
+    <delete id="deleteZhongzContractByIds" parameterType="String">
+        delete from zhongz_contract where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

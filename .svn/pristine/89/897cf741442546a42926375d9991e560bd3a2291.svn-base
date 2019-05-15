@@ -1,0 +1,86 @@
+package com.zhongz.service.impl;
+
+import java.util.List;
+
+import com.zhongz.domain.ZhongzHouse;
+import com.zhongz.mapper.ZhongzHouseMapper;
+import com.zhongz.service.IZhongzHouseService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.ruoyi.common.core.text.Convert;
+
+/**
+ * 房屋 服务层实现
+ * 
+ * @author ruoyi
+ * @date 2019-04-04
+ */
+@Service
+public class ZhongzHouseServiceImpl implements IZhongzHouseService
+{
+	@Autowired
+	private ZhongzHouseMapper zhongzHouseMapper;
+
+	/**
+     * 查询房屋信息
+     * 
+     * @param id 房屋ID
+     * @return 房屋信息
+     */
+    @Override
+	public ZhongzHouse selectZhongzHouseById(String id)
+	{
+	    return zhongzHouseMapper.selectZhongzHouseById(id);
+	}
+	
+	/**
+     * 查询房屋列表
+     * 
+     * @param zhongzHouse 房屋信息
+     * @return 房屋集合
+     */
+	@Override
+	public List<ZhongzHouse> selectZhongzHouseList(ZhongzHouse zhongzHouse)
+	{
+	    return zhongzHouseMapper.selectZhongzHouseList(zhongzHouse);
+	}
+	
+    /**
+     * 新增房屋
+     * 
+     * @param zhongzHouse 房屋信息
+     * @return 结果
+     */
+	@Override
+	public int insertZhongzHouse(ZhongzHouse zhongzHouse)
+	{
+		zhongzHouse.preInsert();
+		return zhongzHouseMapper.insertZhongzHouse(zhongzHouse);
+	}
+	
+	/**
+     * 修改房屋
+     * 
+     * @param zhongzHouse 房屋信息
+     * @return 结果
+     */
+	@Override
+	public int updateZhongzHouse(ZhongzHouse zhongzHouse)
+	{
+		zhongzHouse.preUpdate();
+		return zhongzHouseMapper.updateZhongzHouse(zhongzHouse);
+	}
+
+	/**
+     * 删除房屋对象
+     * 
+     * @param ids 需要删除的数据ID
+     * @return 结果
+     */
+	@Override
+	public int deleteZhongzHouseByIds(String ids)
+	{
+		return zhongzHouseMapper.deleteZhongzHouseByIds1(Convert.toStrArray(ids));
+	}
+	
+}
